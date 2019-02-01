@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="724">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="913">
  <tileset firstgid="1" source="rpg-tiles-64.tsx"/>
  <tileset firstgid="261" source="map-tiles-64.tsx"/>
- <layer name="Water" width="80" height="80">
+ <layer id="8" name="Water" width="160" height="80">
   <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6GTUv8q52FvSFg1VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV9fUAzKEgLg==
+   eJztw0ENAAAMA6GTUv8q52IvSFg1VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX1+6d9AWw==
   </data>
  </layer>
- <layer name="Background" width="80" height="80">
+ <layer id="9" name="Background" width="160" height="80">
   <data encoding="base64" compression="zlib">
-   eJztnMFuwjAMhukVthdg7M4qdt/Y9v6vtVYjwhgndQq1/zB/UjTEZdYf23Frh9UqCNpj3a1WT8N67srfBTLbQaOXYX0QvaTvUBn3enPa742Dvf1Jq6TXaMcn+24D6I9rwdZxvRrbuGX/v7SQ/DFnt7WNfYV+SBqW7H43tO84/K+3GRp65BpKKW6sY7jWBz32ucZma7tqcqDnPmttbsX/PHNhyWZru1IO3A/ruzIfemk4FTPWMTxq+NOdP9dqaH2eTMWMZ24Z0WqYfPaL6L80Y+3M62aUuKBMabg31IyiPe+8fXDkePItSUcP+zS+h+SDiSOJ06SlR/1XW2t51qg5kk96xG5trYUQwyjUxK5nfkallIvD9/RoYxgx9yGgPUOQzl8UanNgaHjJnHdFkQfP0Hcd2rMkfPCSnpwNCGcJ7QG2sE/0XZEmnpeoA1P/b9Nd9ytb0DBBnyv58+US2uX6po+Ub6mm99JuLfha5FsdtTVT0tC7R4nAHO3iGeiPOdqlusr6nTwac/2u9bPjXrQ4U4DELT3xODfO7xqlmtKjXm+dnulDteV/Q7trqD+GPkEQBEEQBEHwGMTdxdto6e4iIvw+Y2hYB+/nhoZ18Jn1XXd5h7alPr8XkoY7wS+fgHVN/WIve6S7E1xDtN41nYNJvSfPftKUhoeMhtY9nNxsAsJ7/Fwf58D0o7pa7nmpz4nQy9wKmuX8ztr/pnrE3r1Map9GN+uYKfU4EWKX+55kJz9TLGMG6Q43h/reTsh1Uk1jHTNIvyFAKeUVriX3w/C/8r4ehIXof1516NSZdhC09Nh3zXyW9/1UKb9N6Wdls2Zu3SOGe6ZP7nlD0s6qZtDOBnr7Xy7Xpc87YO0Q/E86NyTfs6xVtffH0H8bgupnuc/auUqv+oXfh9HMLaI873rnPonSHKhVzay5c8QXat8h+SfVcWn95v6+GvIstOU86NxZcu9ciELNmSvlbdqrQfTFpUm+npZ0pvF6heftmC0/I2kTugRBEPxPfgGgrpcP
+   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
   </data>
  </layer>
- <layer name="Scenery" width="80" height="80">
+ <layer id="10" name="Scenery" width="160" height="80">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA1wBkAAAB
+   eJzt3W1uozAQgGE4R7lB+rfbE5RITf5Wu9py0ewd0jskJ9kdrUeZuHwYjCFO3kdCJRVpKjGdwfZAiwIAAAAAgP+OZn9TFsVzudqvggeyc3F2cq9r9/qwym+DR1CZ3NaW6yT2NB/uyIMIUI2IE3tsV57TfEgtRoimvP4qxsTkEOox+kieSl0zyYXocxo+ZDJ7TQj4ZNyaOj9JfJP/4CMvYQ2VN3fXTMxNhyJsrFKXxDq+k7o7Jfb0PWPqdsprTORJ4mjqmHfMeyVPcv0Hn81fY+uj5sDQ+T3WQ9BGY3Bsfawm1m7AOhaX3Ec8YWmn4jI/l7JG/iK20aMpL1tu2uaAnsp517GRVmh+usV5PM3d+4H+MORJx7g7N04Zk1e2iXPq1v3sT/M5dcfnvRCP2bF1eRt4/hpvveNWcqbkxK7YxH05dezHkDz8J+L98nfwRPzdPdvTevC+F0Pi5yvi/fJ3sGFckj2Nqb56nKLmSvyc/20/IuLnxY1LiMG8Dc0V2t6a2Ficu0exZmyctaFaqmMVrZWx13+Sb3cBcfy2QC8tbkNf/Tq47RxwbAi97uuL470Zp9/KeBvr8M9/zD1wOud4HjhOY+/dHe9/ZkVcZmvsurCef78Op6K9OLvyesxtHQt6YHMzpW5q3Nn9odwV67m8nidvm2Meu26D9VUmjvT10Dn8ctvR7KfOf+JgNtyvofnks9tOZj91/sNjCF3D+F1ef53K9j0Aaql4eHWfw3Ub1JJ9zJpvU80nV65nkPlqtNH5lJT5L9eebyyjSZyfWK9Dn9ieqxCMb9BF53FSxiDjG/TRXoZUvfPcG4oQY9c2PogrzIyxKtYS87yuNtKrJb38r/TjY0GVizmdewm9rxSIobmuJvayYXv59pmfq8rF27uLQWru7dJ1B93ugfbj/JypPwfz0pokaw4ad/rs8NTrYHhcEl8ae035/T4J+9reX8H9PJiDxNeUeTXu58HSJPfxHCmsaeONS6jDSKUtz2lfaMhzCYAYXXN+G/NcAvIfUrO9J5Lz9H931S3jZWAubfdSSs6jbx1r2szciwKE0tgj/2FuIc/Po/Yilbb1N6VjDuIPqfj/h0vnX3Tdg7hDan4M1q5vjmebYUnkOwAAAAAAAAAAAAAAgDh/AeiFo+A=
   </data>
  </layer>
- <layer name="Overlay" width="80" height="80">
+ <layer id="11" name="Overlay" width="160" height="80">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA1wBkAAAB
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4G/IAAAB
   </data>
  </layer>
- <objectgroup name="ObjectData">
+ <objectgroup id="5" name="ObjectData">
   <object id="1" name="player" x="2598.67" y="2113.33" width="25.3333" height="62.6667"/>
  </objectgroup>
- <objectgroup name="PhysicsData">
+ <objectgroup id="6" name="PhysicsData">
   <object id="8" name="chemistry" x="1348" y="1920" width="92" height="64"/>
   <object id="9" name="chemistry" x="1444" y="1928" width="10.6667" height="157.333"/>
   <object id="10" name="chemistry" x="1220" y="2081.33" width="206.667" height="26.6667"/>
   <object id="11" name="chemistry" x="1428" y="2085.33" width="34.6667" height="14.6667"/>
   <object id="12" name="chemistry" x="1456" y="1948" width="12" height="137.333"/>
-  <object id="15" name="bound" x="0.727273" y="-0.030303" width="5114.39" height="2.33333"/>
+  <object id="15" name="bound" x="0.727273" y="-0.030303" width="10244.7" height="2.33333"/>
   <object id="16" name="bound" x="0" y="2" width="5" height="5119.33"/>
-  <object id="18" name="bound" x="5" y="5118" width="5115.08" height="1.75"/>
-  <object id="19" name="bound" x="5116.67" y="0" width="3.66667" height="5119.33"/>
+  <object id="18" name="bound" x="5" y="5118" width="10235.1" height="1.75"/>
+  <object id="19" name="bound" x="10236.4" y="0.521739" width="3.66667" height="5119.33"/>
   <object id="20" name="chemistry" x="1152" y="2112" width="64" height="192"/>
   <object id="21" name="chemistry" x="1216" y="2240" width="80" height="61.3333"/>
   <object id="22" name="chemistry" x="1216" y="2304" width="64" height="64"/>
@@ -570,7 +570,7 @@
   <object id="572" name="james" x="3977.5" y="213.5" width="10" height="20"/>
   <object id="573" name="james" x="3974.5" y="219.5" width="9" height="21.5"/>
   <object id="574" name="james" x="3970.5" y="224" width="8" height="32.5"/>
-  <object id="578" name="james" x="3840" y="3328" width="384" height="64"/>
+  <object id="578" name="vanbrugh" x="3840" y="3328" width="384" height="64"/>
   <object id="579" name="vanbrugh" x="3520" y="3264" width="320" height="64"/>
   <object id="580" name="vanbrugh" x="4224" y="3392" width="64" height="64"/>
   <object id="581" name="vanbrugh" x="4288" y="3456" width="64" height="192"/>
@@ -698,10 +698,187 @@
   <object id="708" name="vanbrugh" x="3549.33" y="3204" width="12" height="54.6667"/>
   <object id="709" name="vanbrugh" x="3561.33" y="3216" width="9.33333" height="46.6667"/>
   <object id="710" name="vanbrugh" x="3569.33" y="3236" width="12" height="29.3333"/>
+  <object id="726" name="goodricke" x="5568" y="1088" width="64" height="256"/>
+  <object id="729" name="goodricke" x="5504" y="640" width="64" height="192"/>
+  <object id="730" name="goodricke" x="5632" y="1280" width="64" height="192"/>
+  <object id="731" name="goodricke" x="5440" y="768" width="64" height="256"/>
+  <object id="732" name="goodricke" x="5504" y="960" width="64" height="192"/>
+  <object id="733" name="goodricke" x="5568" y="512" width="64" height="192"/>
+  <object id="734" name="goodricke" x="5632" y="448" width="64" height="128"/>
+  <object id="735" name="goodricke" x="6016" y="1216" width="64" height="256"/>
+  <object id="736" name="goodricke" x="5952" y="1024" width="64" height="256"/>
+  <object id="737" name="goodricke" x="5888" y="896" width="64" height="192"/>
+  <object id="738" name="goodricke" x="5952" y="768" width="64" height="192"/>
+  <object id="739" name="goodricke" x="6080" y="512" width="64" height="256"/>
+  <object id="740" name="goodricke" x="6016" y="704" width="64" height="128"/>
+  <object id="741" name="goodricke" x="5696" y="448" width="256" height="63.9091"/>
+  <object id="742" name="goodricke" x="5888" y="512" width="192" height="63.9091"/>
+  <object id="743" name="goodricke" x="5696" y="1408" width="320.182" height="63.9091"/>
+  <object id="744" name="goodricke" x="6080" y="1472" width="64" height="192"/>
+  <object id="745" name="goodricke" x="6592" y="1344" width="64" height="256"/>
+  <object id="746" name="goodricke" x="6144" y="1600" width="767.932" height="63.9091"/>
+  <object id="747" name="goodricke" x="6144" y="1408" width="255.932" height="63.9091"/>
+  <object id="748" name="goodricke" x="6464" y="1664" width="64" height="383.333"/>
+  <object id="749" name="goodricke" x="6656" y="1856" width="64" height="192"/>
+  <object id="750" name="goodricke" x="6720" y="1728" width="64" height="192"/>
+  <object id="751" name="goodricke" x="6784" y="1727.5" width="64" height="64.5"/>
+  <object id="752" name="goodricke" x="6848" y="1664" width="64" height="128"/>
+  <object id="753" name="goodricke" x="6528" y="1984" width="128" height="64.5"/>
+  <object id="754" name="goodricke" x="6336" y="1344" width="255.932" height="63.9091"/>
+  <object id="755" name="goodricke" x="6528" y="1216" width="320.182" height="63.9091"/>
+  <object id="756" name="goodricke" x="6528" y="832" width="320.182" height="63.9091"/>
+  <object id="757" name="goodricke" x="6336" y="384" width="64" height="256"/>
+  <object id="759" name="goodricke" x="6464" y="896" width="64" height="192"/>
+  <object id="760" name="goodricke" x="6528" y="1088" width="64" height="128"/>
+  <object id="761" name="goodricke" x="6784" y="1088" width="64" height="128"/>
+  <object id="762" name="goodricke" x="6528" y="256" width="703.994" height="63.9091"/>
+  <object id="763" name="goodricke" x="6592" y="576" width="574.849" height="63.9091"/>
+  <object id="764" name="goodricke" x="7488" y="640" width="64" height="704"/>
+  <object id="765" name="goodricke" x="7424" y="512.333" width="64" height="191.667"/>
+  <object id="766" name="goodricke" x="7360" y="448" width="64" height="127.667"/>
+  <object id="767" name="goodricke" x="7296" y="384" width="64" height="127.667"/>
+  <object id="768" name="goodricke" x="7232" y="320" width="64" height="127.667"/>
+  <object id="769" name="goodricke" x="6848.25" y="895.75" width="64" height="256"/>
+  <object id="770" name="goodricke" x="6400" y="576" width="64" height="192"/>
+  <object id="771" name="goodricke" x="6400" y="320" width="127.974" height="63.9091"/>
+  <object id="772" name="goodricke" x="6464" y="704" width="127.974" height="63.9091"/>
+  <object id="773" name="goodricke" x="6528" y="640" width="127.974" height="63.9091"/>
+  <object id="774" name="goodricke" x="7168" y="832.091" width="64" height="447.909"/>
+  <object id="775" name="goodricke" x="7104" y="640" width="64" height="256"/>
+  <object id="776" name="goodricke" x="7295.33" y="1280" width="192.849" height="63.9091"/>
+  <object id="777" name="goodricke" x="7232" y="1216" width="128.182" height="63.9091"/>
+  <object id="778" name="goodricke" x="6336" y="2432" width="320.182" height="63.9091"/>
+  <object id="779" name="goodricke" x="6400" y="2112" width="320.182" height="63.9091"/>
+  <object id="780" name="goodricke" x="6080" y="2048" width="64" height="256"/>
+  <object id="781" name="goodricke" x="6144" y="2048" width="128" height="64.5"/>
+  <object id="782" name="goodricke" x="6144" y="2240" width="128" height="64.5"/>
+  <object id="783" name="goodricke" x="6208" y="2304" width="128" height="64.5"/>
+  <object id="784" name="goodricke" x="6272" y="2368" width="128" height="64.5"/>
+  <object id="785" name="goodricke" x="6592" y="2368" width="192.849" height="63.9091"/>
+  <object id="786" name="goodricke" x="6720" y="2176" width="64" height="192"/>
+  <object id="787" name="goodricke" x="6336" y="1984" width="64" height="192"/>
+  <object id="788" name="goodricke" x="6208" y="1984" width="128" height="64.5"/>
+  <object id="789" name="goodricke" x="7360" y="1791.75" width="64" height="576.25"/>
+  <object id="790" name="goodricke" x="7424" y="1408" width="64" height="446.917"/>
+  <object id="793" name="goodricke" x="6976" y="1408" width="64" height="576.25"/>
+  <object id="796" name="goodricke" x="6912" y="1984" width="64" height="382.917"/>
+  <object id="797" name="goodricke" x="6976" y="2304" width="383.515" height="63.9091"/>
+  <object id="798" name="goodricke" x="7040" y="1408" width="383.515" height="63.9091"/>
+  <object id="799" name="compsci" x="5888" y="4096" width="64" height="192"/>
+  <object id="800" name="compsci" x="5824" y="3968" width="64" height="192"/>
+  <object id="801" name="compsci" x="5888" y="3840" width="64" height="192"/>
+  <object id="802" name="compsci" x="6080" y="3520.33" width="64" height="255.667"/>
+  <object id="804" name="compsci" x="6016" y="3904" width="128" height="64"/>
+  <object id="805" name="compsci" x="5952" y="3840" width="128" height="64"/>
+  <object id="806" name="compsci" x="6080" y="3968" width="128" height="64"/>
+  <object id="807" name="compsci" x="6144" y="4032" width="192.25" height="64"/>
+  <object id="808" name="compsci" x="6272" y="3968" width="192.25" height="64"/>
+  <object id="809" name="compsci" x="6400" y="3904" width="128" height="64"/>
+  <object id="810" name="compsci" x="6464" y="3712" width="64" height="192"/>
+  <object id="811" name="compsci" x="6208" y="3776" width="192.25" height="64"/>
+  <object id="812" name="compsci" x="6144" y="3712" width="64" height="128"/>
+  <object id="813" name="compsci" x="6400" y="3712" width="64" height="128"/>
+  <object id="814" name="compsci" x="6400" y="3456" width="64" height="192"/>
+  <object id="815" name="compsci" x="6272" y="3584" width="128" height="64"/>
+  <object id="816" name="compsci" x="6144" y="3520" width="192.25" height="64"/>
+  <object id="817" name="compsci" x="5696" y="3520" width="192.25" height="64"/>
+  <object id="818" name="compsci" x="5760" y="3200" width="192.25" height="64"/>
+  <object id="819" name="compsci" x="5888" y="3136" width="192.25" height="64"/>
+  <object id="820" name="compsci" x="6592" y="3200" width="64" height="128"/>
+  <object id="821" name="compsci" x="6528" y="3136" width="64" height="128"/>
+  <object id="822" name="compsci" x="6464" y="3072" width="64" height="128"/>
+  <object id="823" name="compsci" x="6784" y="3392" width="64" height="128"/>
+  <object id="824" name="compsci" x="6720" y="4032" width="64" height="128"/>
+  <object id="825" name="compsci" x="6656" y="4096" width="64" height="128"/>
+  <object id="826" name="compsci" x="6592" y="4160" width="64" height="128"/>
+  <object id="827" name="compsci" x="6784" y="3904" width="64" height="192"/>
+  <object id="829" name="compsci" x="5696" y="3328" width="64" height="192"/>
+  <object id="830" name="compsci" x="5696" y="3264" width="128" height="64"/>
+  <object id="831" name="compsci" x="5824" y="3456" width="192.25" height="64"/>
+  <object id="832" name="compsci" x="5952" y="3392" width="383.75" height="64"/>
+  <object id="833" name="compsci" x="6336" y="3392" width="64" height="128"/>
+  <object id="834" name="compsci" x="6080" y="3072" width="64" height="128"/>
+  <object id="835" name="compsci" x="6144" y="3072" width="320" height="64"/>
+  <object id="836" name="compsci" x="6016.25" y="4288" width="511.75" height="64"/>
+  <object id="837" name="compsci" x="5952" y="4224" width="128" height="64"/>
+  <object id="838" name="compsci" x="6464" y="4224" width="128" height="64"/>
+  <object id="839" name="compsci" x="6848" y="3456" width="64" height="512"/>
+  <object id="840" name="compsci" x="6720" y="3328" width="64" height="128"/>
+  <object id="841" name="compsci" x="6656" y="3264" width="128" height="64"/>
+  <object id="844" name="langwith" x="8128" y="2176" width="64" height="512"/>
+  <object id="846" name="langwith" x="8384" y="2176" width="64" height="448.045"/>
+  <object id="847" name="langwith" x="8640" y="1344" width="64" height="512"/>
+  <object id="848" name="langwith" x="8640" y="2816" width="64" height="320"/>
+  <object id="849" name="langwith" x="8576" y="2688" width="64" height="192"/>
+  <object id="850" name="langwith" x="8512" y="2624" width="64" height="128"/>
+  <object id="851" name="langwith" x="8448" y="2560" width="64" height="128"/>
+  <object id="852" name="langwith" x="8192" y="2624" width="64" height="192"/>
+  <object id="853" name="langwith" x="8256" y="2752" width="64" height="192"/>
+  <object id="854" name="langwith" x="8320" y="2880" width="64" height="128"/>
+  <object id="855" name="langwith" x="8384" y="2944" width="64" height="128"/>
+  <object id="856" name="langwith" x="8448" y="3008" width="64" height="128"/>
+  <object id="857" name="langwith" x="8512" y="3072" width="128" height="64"/>
+  <object id="858" name="langwith" x="8192" y="2176" width="192" height="64"/>
+  <object id="859" name="langwith" x="8192" y="2048" width="320" height="64"/>
+  <object id="860" name="langwith" x="8192" y="1920" width="64" height="128"/>
+  <object id="861" name="langwith" x="8256" y="1728" width="64" height="256"/>
+  <object id="862" name="langwith" x="8320" y="1664" width="64" height="128"/>
+  <object id="863" name="langwith" x="8384" y="1536" width="64" height="192"/>
+  <object id="864" name="langwith" x="8448" y="1472" width="64" height="128"/>
+  <object id="865" name="langwith" x="8512" y="1472" width="128" height="64"/>
+  <object id="866" name="langwith" x="8576" y="1792" width="64" height="128"/>
+  <object id="867" name="langwith" x="8512" y="1856" width="64" height="192"/>
+  <object id="868" name="langwith" x="8704" y="1344" width="128" height="64"/>
+  <object id="869" name="langwith" x="8768" y="1280" width="640" height="64"/>
+  <object id="870" name="langwith" x="8704" y="1536" width="128" height="64"/>
+  <object id="871" name="langwith" x="8768" y="1600" width="256" height="64"/>
+  <object id="872" name="langwith" x="8960" y="1536" width="512" height="64"/>
+  <object id="873" name="langwith" x="9280" y="1472" width="192" height="64"/>
+  <object id="875" name="langwith" x="9344" y="1408" width="256" height="64"/>
+  <object id="876" name="langwith" x="9344" y="1344" width="64" height="64"/>
+  <object id="877" name="langwith" x="9536" y="1472" width="128" height="64"/>
+  <object id="878" name="langwith" x="9600" y="1536" width="64" height="128"/>
+  <object id="879" name="langwith" x="9664" y="1600" width="64" height="128"/>
+  <object id="880" name="langwith" x="9344" y="1600" width="64" height="128"/>
+  <object id="881" name="langwith" x="9408" y="1664" width="64" height="128"/>
+  <object id="882" name="langwith" x="9472" y="1728" width="64" height="192"/>
+  <object id="883" name="langwith" x="9536" y="1856" width="256" height="64"/>
+  <object id="884" name="langwith" x="9728" y="1664" width="64" height="192"/>
+  <object id="885" name="langwith" x="9216" y="1792" width="64" height="448"/>
+  <object id="886" name="langwith" x="8768" y="1856" width="64" height="384"/>
+  <object id="887" name="langwith" x="8832" y="1792" width="64" height="128"/>
+  <object id="888" name="langwith" x="8896" y="1792" width="320" height="64"/>
+  <object id="889" name="langwith" x="8832" y="2240" width="320" height="64"/>
+  <object id="890" name="langwith" x="9088" y="2176" width="128" height="64"/>
+  <object id="891" name="langwith" x="9344" y="1920" width="64" height="320"/>
+  <object id="892" name="langwith" x="9536" y="1920" width="64" height="320"/>
+  <object id="893" name="langwith" x="9408" y="2176" width="128" height="64"/>
+  <object id="894" name="langwith" x="9408" y="1920" width="128" height="64"/>
+  <object id="895" name="langwith" x="9664" y="2176" width="320" height="128"/>
+  <object id="896" name="langwith" x="9152" y="2496" width="192" height="384"/>
+  <object id="897" name="langwith" x="9408" y="3008" width="64" height="256"/>
+  <object id="898" name="langwith" x="9472" y="3200" width="384" height="64"/>
+  <object id="899" name="langwith" x="9472" y="3008" width="128" height="64"/>
+  <object id="900" name="langwith" x="9536" y="2944" width="192" height="64"/>
+  <object id="901" name="langwith" x="9664" y="2880" width="384" height="64"/>
+  <object id="902" name="langwith" x="9984" y="2944" width="64" height="128"/>
+  <object id="903" name="langwith" x="9920" y="3008" width="64" height="128"/>
+  <object id="904" name="langwith" x="9856" y="3072" width="64" height="128"/>
+  <object id="905" name="langwith" x="9920" y="2368" width="64" height="448"/>
+  <object id="906" name="langwith" x="9664" y="2368" width="256" height="64"/>
+  <object id="907" name="langwith" x="9664" y="2432" width="64" height="128"/>
+  <object id="908" name="langwith" x="9728" y="2496" width="64" height="192"/>
+  <object id="909" name="langwith" x="9792" y="2624" width="64" height="192"/>
+  <object id="910" name="langwith" x="9856" y="2752" width="64" height="64"/>
  </objectgroup>
- <objectgroup name="RegionData">
+ <objectgroup id="7" name="RegionData">
   <object id="721" name="derwentregion" x="16" y="2728" width="2592" height="2392"/>
-  <object id="722" name="vanbrughregion" x="2620" y="2584" width="2504" height="2548"/>
-  <object id="723" name="jamesregion" x="3152" y="8" width="1976" height="2336"/>
+  <object id="722" name="vanbrughregion" x="2620" y="2584" width="2438" height="2534"/>
+  <object id="723" name="jamesregion" x="3138" y="7.74089" width="1916" height="2292.52"/>
+  <object id="843" name="goodrickeregion" x="5184" y="0" width="2560" height="2816"/>
+  <object id="912" name="langwithregion" x="7744" y="704" width="2496" height="3136"/>
+ </objectgroup>
+ <objectgroup id="12" name="Boundary">
+  <object id="725" x="5056" y="0" width="127.75" height="5120"/>
  </objectgroup>
 </map>
