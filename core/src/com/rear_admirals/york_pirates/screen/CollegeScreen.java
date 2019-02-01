@@ -74,6 +74,10 @@ public class CollegeScreen extends BaseScreen {
                 }
             }
         });
+
+
+
+
         optionsTable.add(heal);
 
 
