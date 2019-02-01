@@ -3,19 +3,34 @@ package com.rear_admirals.york_pirates.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
 
+import java.util.Random;
+
 public class MinigameScreen extends BaseScreen {
     private Player player;
     private Stage stage;
+    private Array<MinigameGeese> geeseList;
+
+
     public MinigameScreen(PirateGame main){
         super(main);
+        this.geeseList.setSize(6);
         this.player = main.getPlayer();
+        Random random = new Random();
         stage = new Stage(new FitViewport(1920,1080));
+        for (int x = 0; x<5; x=x+1){
+            geeseList.new MinigameGeese(random.nextInt(10)+1));
+            Gdx.app.log(geeseList.get(x).toString(), "words");
+        }
+
+
     }
+
 
     @Override
     public void update(float delta) {
