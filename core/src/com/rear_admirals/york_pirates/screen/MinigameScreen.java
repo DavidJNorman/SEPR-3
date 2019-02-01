@@ -19,12 +19,12 @@ public class MinigameScreen extends BaseScreen {
 
     public MinigameScreen(PirateGame main){
         super(main);
-        this.geeseList.setSize(6);
+        geeseList = new Array<MinigameGeese>(5);
         this.player = main.getPlayer();
         Random random = new Random();
         stage = new Stage(new FitViewport(1920,1080));
         for (int x = 0; x<5; x=x+1){
-            geeseList.new MinigameGeese(random.nextInt(10)+1));
+            this.geeseList.add(new MinigameGeese(random.nextInt(10)+1));
             Gdx.app.log(geeseList.get(x).toString(), "words");
         }
 
