@@ -15,7 +15,7 @@ public class MinigameScreen extends BaseScreen {
     private Player player;
     private Stage stage;
     private Array<MinigameGeese> geeseList;
-
+    private Boolean minigamerun = false;
 
     public MinigameScreen(PirateGame main){
         super(main);
@@ -43,5 +43,10 @@ public class MinigameScreen extends BaseScreen {
         stage.draw();
         stage.act();
 
+    }
+    public void minigame(float delta){
+        if(minigamerun == true){
+
+        }
     }
 }
