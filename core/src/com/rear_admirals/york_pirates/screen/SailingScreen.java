@@ -38,7 +38,7 @@ public class SailingScreen extends BaseScreen {
     private ArrayList<BaseActor> regionList;
 
     private int tileSize = 64;
-    private int tileCountWidth = 80;
+    private int tileCountWidth = 160;
     private int tileCountHeight = 80;
 
     //calculate game world dimensions
@@ -57,6 +57,8 @@ public class SailingScreen extends BaseScreen {
     private Label hintMessage;
 
     private Float timer;
+    private float messageDisplayTimer;
+    private boolean unlockMessageDisplayed = false;
 
     public SailingScreen(final PirateGame main){
         super(main);
@@ -145,6 +147,8 @@ public class SailingScreen extends BaseScreen {
                 else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
                 else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
+                else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
+                else if (objectName.equals("langwith")) solid.setCollege(Langwith);
                 else{
                     System.out.println("Not college/department: " + solid.getName());
                 }
@@ -169,6 +173,8 @@ public class SailingScreen extends BaseScreen {
                 if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
                 else if (object.getName().equals("jamesregion")) region.setCollege(James);
                 else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
+                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
+                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
                 regionList.add(region);
             } else {
                 System.err.println("Unknown RegionData object.");
@@ -216,8 +222,16 @@ public class SailingScreen extends BaseScreen {
         Boolean y = false;
         for (BaseActor obstacle : obstacleList) {
             String name = obstacle.getName();
-            if (playerShip.overlaps(obstacle, true)) {
+            //add airwall to prevent player go to new area before defeat james and vanbrugh
+
+            if(name.equals("airwall")&&playerShip.getCollege().getAlly().size() >= 3){
+                playerShip.overlaps(obstacle, false);
+            }
+            else if (playerShip.overlaps(obstacle, true)) {
                 y = true;
+                if(name.equals("airwall")&&playerShip.getCollege().getAlly().size() < 3){
+                    mapMessage.setText("Defeat James and Vanbrugh to Unlock");
+                }
                 if (!(obstacle.getDepartment() == null)) {
                     mapMessage.setText(capitalizeFirstLetter(name) + " Island");
                     hintMessage.setText("Press F to interact");
@@ -274,8 +288,20 @@ public class SailingScreen extends BaseScreen {
             pirateGame.getPlayer().addPoints(1);
             timer -= 1;
         }
-
         pointsLabel.setText(Integer.toString(pirateGame.getPlayer().getPoints()));
+
+        //new area unlocked message
+        if(playerShip.getCollege().getAlly().contains(James)
+                && playerShip.getCollege().getAlly().contains(Vanbrugh)
+                && !unlockMessageDisplayed){
+            mapMessage.setText("New Area Unlocked");
+            //display time counter start
+            messageDisplayTimer += delta;
+            if(messageDisplayTimer > 3) {
+                unlockMessageDisplayed = true;
+                messageDisplayTimer = 0;
+            }
+        }
     }
 
     @Override
