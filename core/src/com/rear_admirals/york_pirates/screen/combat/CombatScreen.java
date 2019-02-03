@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.rear_admirals.york_pirates.BuffConstant;
 import com.rear_admirals.york_pirates.screen.combat.attacks.*;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
@@ -20,6 +21,7 @@ import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CombatScreen extends BaseScreen {
+    private BuffConstant constant = new BuffConstant();
 
     // screen layout variables
     private float button_pad_bottom;
@@ -260,6 +262,7 @@ public class CombatScreen extends BaseScreen {
     // combat Handler
     //  This function handles the ship combat using BattleEvent enum type
     public void combatHandler(BattleEvent status){
+
         //Debugging
         System.out.println("Running combatHandler with status: " + status.toString());
 
@@ -347,6 +350,7 @@ public class CombatScreen extends BaseScreen {
                 player.setPoints(0);
                 player.getPlayerShip().setHealth(player.getPlayerShip().getHealthMax()/4);
                 dialog("YOU HAVE DIED", BattleEvent.SCENE_RETURN);
+
                 break;
             case ENEMY_DIES:
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
@@ -357,11 +361,13 @@ public class CombatScreen extends BaseScreen {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
                 }
+
                 break;
             case PLAYER_FLEES:
                 textBox.setStyle(pirateGame.getSkin().get("red", TextButton.TextButtonStyle.class));
                 player.addPoints(-5);
                 combatHandler(BattleEvent.SCENE_RETURN);
+
                 break;
             case SCENE_RETURN:
                 enemy.setVisible(false);
@@ -369,6 +375,12 @@ public class CombatScreen extends BaseScreen {
                 player.getPlayerShip().setAccelerationXY(0,0);
                 player.getPlayerShip().setAnchor(true);
                 System.out.println("END OF COMBAT");
+                //check buff effect
+                checkBuffTurn();
+                System.out.println("player attack buff turns:" + (player.getAttackBuffTurns()));
+                System.out.println("player attack" + player.getPlayerShip().getAttack());
+                System.out.println("player accuracy buff turns:" + (player.getAccuracyBuffTurns()));
+                System.out.println("player accuracy" + player.getPlayerShip().getAccuracy());
                 toggleAttackStage();
                 pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
@@ -462,6 +474,21 @@ public class CombatScreen extends BaseScreen {
                 textBox.setText(displayText.substring(0,animationIndex));
                 animationIndex++;
                 delayTime = 0;
+            }
+        }
+    }
+
+    private void checkBuffTurn(){
+        if(player.getAttackBuffTurns() > 0){
+            player.setAttackBuffTurns(player.getAttackBuffTurns() - 1);
+            if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed){
+                player.removeBuff(constant.ATTACK_BUFF_TAG);
+            }
+        }
+        if(player.getAccuracyBuffTurns() > 0){
+            player.setAccuracyBuffTurns(player.getAccuracyBuffTurns() - 1);
+            if(player.getAccuracyBuffTurns() == 0 && player.isAccuracyBuffed){
+                player.removeBuff(constant.ACCURACY_BUFF_TAG);
             }
         }
     }

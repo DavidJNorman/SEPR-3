@@ -53,8 +53,11 @@ public class SailingScreen extends BaseScreen {
 
     private Label pointsLabel;
     private Label goldLabel;
+    private Label attackBuff;
+    private Label accuracyBuff;
     private Label mapMessage;
     private Label hintMessage;
+
 
     private Float timer;
     private float messageDisplayTimer;
@@ -79,11 +82,26 @@ public class SailingScreen extends BaseScreen {
         goldLabel = new Label(Integer.toString(main.getPlayer().getGold()), main.getSkin(), "default_black");
         goldLabel.setAlignment(Align.left);
 
-        uiTable.add(pointsTextLabel);
+        Label attackBuffTextLabel = new Label("Attack Buff:",main.getSkin(),"default_black");
+        attackBuff = new Label(Integer.toString(main.getPlayer().getAttackBuffTurns()),main.getSkin(),"default_black");
+        attackBuff.setAlignment(Align.left);
+
+        Label accuracyBuffTextLabel = new Label("Accuracy Buff", main.getSkin(),"default_black");
+        accuracyBuff = new Label(Integer.toString(main.getPlayer().getAccuracyBuffTurns()),main.getSkin(),"default_black");
+        accuracyBuff.setAlignment(Align.left);
+
+
+        uiTable.add(pointsTextLabel).fill();
         uiTable.add(pointsLabel).width(pointsTextLabel.getWidth());
         uiTable.row();
         uiTable.add(goldTextLabel).fill();
         uiTable.add(goldLabel).fill();
+        uiTable.row();
+        uiTable.add(attackBuffTextLabel).fill();
+        uiTable.add(attackBuff).fill();
+        uiTable.row();
+        uiTable.add(accuracyBuffTextLabel).fill();
+        uiTable.add(accuracyBuff).fill();
 
         uiTable.align(Align.topRight);
         uiTable.setFillParent(true);
@@ -114,72 +132,12 @@ public class SailingScreen extends BaseScreen {
         tiledCamera.setToOrtho(false, viewwidth, viewheight);
         tiledCamera.update();
 
-        MapObjects objects = tiledMap.getLayers().get("ObjectData").getObjects();
-        for (MapObject object : objects) {
-            String name = object.getName();
 
-            // all object data assumed to be stored as rectangles
-            RectangleMapObject rectangleObject = (RectangleMapObject)object;
-            Rectangle r = rectangleObject.getRectangle();
+        createObjectData();
+        createPhysicData();
+        createRegionData();
 
-            if (name.equals("player")){
-                playerShip.setPosition(r.x, r.y);
-            } else{
-                System.err.println("Unknown tilemap object: " + name);
-            }
-        }
 
-        objects = tiledMap.getLayers().get("PhysicsData").getObjects();
-        for (MapObject object : objects) {
-            if (object instanceof RectangleMapObject) {
-                RectangleMapObject rectangleObject = (RectangleMapObject) object;
-                Rectangle r = rectangleObject.getRectangle();
-
-                BaseActor solid = new BaseActor();
-                solid.setPosition(r.x, r.y);
-                solid.setSize(r.width, r.height);
-                solid.setName(object.getName());
-                solid.setRectangleBoundary();
-                String objectName = object.getName();
-
-                if (objectName.equals("derwent")) solid.setCollege(Derwent);
-                else if (objectName.equals("james")) solid.setCollege(James);
-                else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
-                else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
-                else if (objectName.equals("physics")) solid.setDepartment(Physics);
-                else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
-                else if (objectName.equals("langwith")) solid.setCollege(Langwith);
-                else{
-                    System.out.println("Not college/department: " + solid.getName());
-                }
-                obstacleList.add(solid);
-            } else {
-                System.err.println("Unknown PhysicsData object.");
-            }
-        }
-
-        objects = tiledMap.getLayers().get("RegionData").getObjects();
-        for (MapObject object : objects) {
-            if (object instanceof RectangleMapObject) {
-                RectangleMapObject rectangleObject = (RectangleMapObject) object;
-                Rectangle r = rectangleObject.getRectangle();
-
-                BaseActor region = new BaseActor();
-                region.setPosition(r.x, r.y);
-                region.setSize(r.width, r.height);
-                region.setRectangleBoundary();
-                region.setName(object.getName());
-
-                if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
-                else if (object.getName().equals("jamesregion")) region.setCollege(James);
-                else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
-                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
-                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
-                regionList.add(region);
-            } else {
-                System.err.println("Unknown RegionData object.");
-            }
-        }
 
         timer = 0f;
 
@@ -289,6 +247,8 @@ public class SailingScreen extends BaseScreen {
             timer -= 1;
         }
         pointsLabel.setText(Integer.toString(pirateGame.getPlayer().getPoints()));
+        attackBuff.setText(Integer.toString(pirateGame.getPlayer().getAttackBuffTurns()));
+        accuracyBuff.setText(Integer.toString(pirateGame.getPlayer().getAccuracyBuffTurns()));
 
         //new area unlocked message
         if(playerShip.getCollege().getAlly().contains(James)
@@ -341,5 +301,116 @@ public class SailingScreen extends BaseScreen {
             return original;
         }
         return original.substring(0, 1).toUpperCase() + original.substring(1);
+    }
+
+    //create region information
+    private void createRegionData(){
+        MapObjects objects = tiledMap.getLayers().get("RegionData").getObjects();
+        for (MapObject object : objects) {
+            if (object instanceof RectangleMapObject) {
+//                RectangleMapObject rectangleObject = (RectangleMapObject) object;
+//                Rectangle r = rectangleObject.getRectangle();
+//
+//                BaseActor region = new BaseActor();
+//                region.setPosition(r.x, r.y);
+//                region.setSize(r.width, r.height);
+                BaseActor region = setUpBaseActor(object);
+                region.setRectangleBoundary();
+                region.setName(object.getName());
+
+                String cases = object.getName();
+//                System.out.println(cases);
+
+                switch (cases){
+                    case "derwentregion":
+                        region.setCollege(Derwent);
+                        break;
+                    case "jamesregion":
+                        region.setCollege(James);
+                        break;
+                    case "vanbrughregion" :
+                        region.setCollege(Vanbrugh);
+                        break;
+                    case "goodrickeregion":
+                        region.setCollege(Goodricke);
+                        break;
+                    case "langwithregion" :
+                        region.setCollege(Langwith);
+                }
+
+//                if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
+//                else if (object.getName().equals("jamesregion")) region.setCollege(James);
+//                else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
+//                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
+//                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
+                regionList.add(region);
+            } else {
+                System.err.println("Unknown RegionData object.");
+            }
+        }
+    }
+
+    //create physic collision information for bound and island
+    private void createPhysicData(){
+        MapObjects objects = tiledMap.getLayers().get("PhysicsData").getObjects();
+        for (MapObject object : objects) {
+            if (object instanceof RectangleMapObject) {
+//                RectangleMapObject rectangleObject = (RectangleMapObject) object;
+//                Rectangle r = rectangleObject.getRectangle();
+//
+//                BaseActor solid = new BaseActor();
+//                solid.setPosition(r.x, r.y);
+//                solid.setSize(r.width, r.height);
+                BaseActor solid = setUpBaseActor(object);
+                solid.setName(object.getName());
+                solid.setRectangleBoundary();
+                String objectName = object.getName();
+
+                if (objectName.equals("derwent")) solid.setCollege(Derwent);
+                else if (objectName.equals("james")) solid.setCollege(James);
+                else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
+                else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
+                else if (objectName.equals("physics")) solid.setDepartment(Physics);
+                else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
+                else if (objectName.equals("langwith")) solid.setCollege(Langwith);
+                else{
+                    System.out.println("Not college/department: " + solid.getName());
+                }
+                obstacleList.add(solid);
+            } else {
+                System.err.println("Unknown PhysicsData object.");
+            }
+        }
+    }
+
+    //create physic collision information for player and objects(currently null)
+    private void createObjectData(){
+        MapObjects objects = tiledMap.getLayers().get("ObjectData").getObjects();
+        for (MapObject object : objects) {
+            String name = object.getName();
+
+            // all object data assumed to be stored as rectangles
+            RectangleMapObject rectangleObject = (RectangleMapObject)object;
+            Rectangle r = rectangleObject.getRectangle();
+
+            if (name.equals("player")){
+                playerShip.setPosition(r.x, r.y);
+            } else{
+                System.err.println("Unknown tilemap object: " + name);
+            }
+        }
+
+    }
+
+    //create BaseActor used in createXXXData() functions
+    private BaseActor setUpBaseActor(MapObject object){
+        RectangleMapObject rectangleObject = (RectangleMapObject) object;
+        Rectangle r = rectangleObject.getRectangle();
+
+        BaseActor baseActor = new BaseActor();
+        baseActor.setPosition(r.x, r.y);
+        baseActor.setSize(r.width, r.height);
+        return baseActor;
+
     }
 }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.rear_admirals.york_pirates.BuffConstant;
 import com.rear_admirals.york_pirates.College;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
@@ -18,6 +19,9 @@ public class CollegeScreen extends BaseScreen {
     private Label pointsLabel;
     private Label goldLabel;
     private int toHeal;
+    private int attackBuffTurn;
+    private int accuracyBuffTurn;
+    private BuffConstant constant = new BuffConstant();
 
     public CollegeScreen(PirateGame main, College college){
         super(main);
@@ -75,6 +79,54 @@ public class CollegeScreen extends BaseScreen {
             }
         });
 
+        final TextButton attackBuff = new TextButton("Add 10 attack for 2 battles" + Integer.toString(constant.ATTACK_BUFF_PRICE)+ "gold",main.getSkin());
+        attackBuffTurn = player.getAttackBuffTurns();
+        if(attackBuffTurn > 0){attackBuff.setText("Already have this buff");}
+        attackBuff.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (player.isAttackBuffed) {
+                    attackBuff.setText("Already have this buff");
+                } else {
+                    if(player.payGold(constant.ATTACK_BUFF_PRICE) && !player.isAttackBuffed){
+                        System.out.println("charged");
+                        player.setAttackBuffTurns(constant.ARRACK_BUFF_TURNS);
+                        player.setBuff(constant.ATTACK_BUFF_TAG);
+                        System.out.println("player attack buff turns:" + (player.getAttackBuffTurns()));
+                        System.out.println("player attack" + player.getPlayerShip().getAttack());
+
+
+                    }else{
+                        message.setText("You don't have enough money");
+                    }
+                }
+            }
+        });
+
+        final TextButton accuracyButton = new TextButton("Add 3 accuracy for 2 battles" + Integer.toString(constant.ACCURACY_BUFF_PRICE) + "gold", main.getSkin());
+        accuracyBuffTurn = player.getAccuracyBuffTurns();
+        if(accuracyBuffTurn > 0){accuracyButton.setText("Already have this buff");}
+        accuracyButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(player.isAccuracyBuffed){
+                    accuracyButton.setText("Already have this buff");
+                }else{
+                    if(player.payGold(constant.ACCURACY_BUFF_PRICE) && !player.isAccuracyBuffed){
+                        System.out.println("charged");
+                        player.setBuff(constant.ACCURACY_BUFF_TAG);
+                        player.setAccuracyBuffTurns(constant.ACCURACY_BUFF_TURN);
+                        System.out.println("player accuracy buff turns:" + (player.getAccuracyBuffTurns()));
+                        System.out.println("player accuracy" + player.getPlayerShip().getAccuracy());
+
+                    }else{
+                        message.setText("You don't have enough money");
+                    }
+                }
+            }
+        });
+
+
 
 
 
@@ -83,6 +135,11 @@ public class CollegeScreen extends BaseScreen {
 
         optionsTable.row();
         optionsTable.add(message);
+        optionsTable.row();
+        optionsTable.add(attackBuff);
+        optionsTable.row();
+        optionsTable.add(accuracyButton);
+
 
         mainStage.addActor(optionsTable);
         Gdx.input.setInputProcessor(mainStage);

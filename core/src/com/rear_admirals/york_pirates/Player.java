@@ -14,12 +14,16 @@ public class Player {
     private int gold;
     private int points;
     public static List<Attack> attacks = new ArrayList<Attack>();
+    private int attackBuffTurns;
+    private int accuracyBuffTurns;
+    public boolean isAttackBuffed;
+    public boolean isAccuracyBuffed;
+    private BuffConstant constant = new BuffConstant();
 
     public Player() {
 	    this.playerShip = new Ship(Brig, "Your Ship", Derwent);
-        this.gold = 0;
+        this.gold = 100;
         this.points = 0;
-
         attacks.add(Ram.attackRam);
         attacks.add(GrapeShot.attackSwivel);
         attacks.add(Attack.attackBoard);
@@ -60,4 +64,49 @@ public class Player {
     public void addPoints(int amount) { points += amount; }
 
     public void addGold(int amount) { gold = gold + amount; }
+
+    public int getAttackBuffTurns() {
+        return attackBuffTurns;
+    }
+
+    public int getAccuracyBuffTurns() {
+        return accuracyBuffTurns;
+    }
+
+    public void setAttackBuffTurns(int turns){
+        this.attackBuffTurns = turns;
+    }
+
+    public void setAccuracyBuffTurns(int accuracyBuffTurns) {
+        this.accuracyBuffTurns = accuracyBuffTurns;
+    }
+
+    public void setBuff(String category){
+        switch(category){
+           case "attack":
+               this.playerShip.setAttack(constant.ATTACK_BUFF+playerShip.getAttack());
+               this.isAttackBuffed = true;
+               break;
+
+           case "accuracy":
+               this.playerShip.setAccuracy(constant.ACCURACY_BUFF + playerShip.getAccuracy());
+               this.isAccuracyBuffed = true;
+               break;
+        }
+
+    }
+    public void removeBuff(String category){
+        switch(category){
+            case "attack":
+                this.playerShip.setAttack(playerShip.getAttack() - constant.ATTACK_BUFF);
+                this.isAttackBuffed = false;
+                break;
+
+            case "accuracy":
+                this.playerShip.setAccuracy(playerShip.getAccuracy() - constant.ACCURACY_BUFF);
+                this.isAccuracyBuffed = false;
+                break;
+        }
+
+    }
 }
