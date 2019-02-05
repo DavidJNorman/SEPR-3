@@ -36,12 +36,12 @@ public class ShipType {
 	public static ShipType Brig = new ShipType("Brig", "Brig" ,5, 5, 5);
 //	public static ShipType Galleon = new ShipType("Galleon", 6, 6, 3, 120);
 
-	public static ShipType DerwentCollege = new ShipType("Derwent", "Boss", 99, 1, 5);
+	public static ShipType DerwentCollege = new ShipType("Derwent", "Boss", 99, 12, 5);
 
 
-	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 1, 5);
+	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 10, 5);
 	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 1, 5);
-	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 1, 5);
-	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 1, 5);
+	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 15, 5);
+	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 20, 5);
 
 }
