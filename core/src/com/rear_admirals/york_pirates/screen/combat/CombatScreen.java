@@ -81,33 +81,15 @@ public class CombatScreen extends BaseScreen {
 
         combatStack = new Stack();
 
-        // Sets size constants for the scene depending on viewport, also sets button padding constants for use in tables
         button_pad_bottom = viewheight/24f;
         button_pad_right = viewwidth/32f;
 
-        // Insantiate the image textures for use within the scene as backgrounds.
-        bg_texture = new Texture("water_texture_sky.png");
-        background = new Image(bg_texture);
-        background.setSize(viewwidth, viewheight);
-
-        wood_texture = new Texture("wood_vertical_board_texture.png");
-        background_wood = new Image(wood_texture);
-        background_wood.setSize(viewwidth, viewheight);
-
-        // Create a Container which takes up the whole screen (used for layout purposes)
-        tableContainer = new Container<Table>();
-        tableContainer.setFillParent(true);
-        tableContainer.setPosition(0,0);
-        tableContainer.align(Align.bottom);
-
-        // Instantiate some different tables used throughout scene
-        rootTable = new Table();
-        descriptionTable = new Table();
-        attackTable = new Table();
+        setTextures();
+        createTable();
 
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth/3);
-        CombatShip enemyShip = new CombatShip("ship2.png",viewwidth/3);
+        CombatShip enemyShip = new CombatShip("ship2.png",viewwidth/3);                                 //TODO Alter this code to be whatever ship texture we use
 
         Label shipName = new Label(player.getPlayerShip().getName(),pirateGame.getSkin(), "default_black");
         playerHP = new ProgressBar(0, player.getPlayerShip().getHealthMax(),0.1f,false,pirateGame.getSkin());
@@ -213,6 +195,39 @@ public class CombatScreen extends BaseScreen {
         uiStage.addActor(background);
         uiStage.addActor(tableContainer);
 
+        SetupEnemyAttacks();
+    }
+
+    public void createTable(){
+        // Create a Container which takes up the whole screen (used for layout purposes)
+        tableContainer = new Container<Table>();
+        tableContainer.setFillParent(true);
+        tableContainer.setPosition(0,0);
+        tableContainer.align(Align.bottom);
+
+        // Instantiate some different tables used throughout scene
+        rootTable = new Table();
+        descriptionTable = new Table();
+        attackTable = new Table();
+
+    }
+
+
+
+    public void setTextures() {
+        // Insantiate the image textures for use within the scene as backgrounds.
+        bg_texture = new Texture("water_texture_sky.png");
+        background = new Image(bg_texture);
+        background.setSize(viewwidth, viewheight);
+
+        wood_texture = new Texture("wood_vertical_board_texture.png");
+        background_wood = new Image(wood_texture);
+        background_wood.setSize(viewwidth, viewheight);
+    }
+
+
+
+    public void SetupEnemyAttacks(){
         // Setup Enemy attacks - may need to be modified if you want to draw attacks from enemy's class
         enemyAttacks = new ArrayList<Attack>();
         enemyAttacks.add(Attack.attackMain);
@@ -223,6 +238,7 @@ public class CombatScreen extends BaseScreen {
 
         System.out.println(viewwidth + "," + viewheight + " AND " + Gdx.graphics.getWidth() + "," + Gdx.graphics.getHeight());
     }
+
 
     @Override
     public void update(float delta){ }
@@ -360,6 +376,7 @@ public class CombatScreen extends BaseScreen {
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
+                    CheckWin();
                 }
 
                 break;
@@ -384,6 +401,12 @@ public class CombatScreen extends BaseScreen {
                 toggleAttackStage();
                 pirateGame.setScreen(pirateGame.getSailingScene());
                 break;
+        }
+    }
+
+    public void CheckWin(){
+        if(this.player.getPlayerShip().getCollege().getAlly().size() >= 5){
+            pirateGame.setScreen(pirateGame.getWinScreen());
         }
     }
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rear_admirals.york_pirates.screen.MainMenu;
 import com.rear_admirals.york_pirates.screen.SailingScreen;
+import com.rear_admirals.york_pirates.screen.WinScreen;
 
 public class PirateGame extends Game {
     private SpriteBatch batch;
@@ -17,6 +18,7 @@ public class PirateGame extends Game {
 	private SailingScreen sailingScene;
 	public static Department Chemistry;
 	public static Department Physics;
+	private WinScreen winScreen;
 
 	public void create(){
 		Gdx.graphics.setTitle("York Pirates!");
@@ -28,6 +30,7 @@ public class PirateGame extends Game {
 		Chemistry = new Department("Chemistry", "Attack", this);
 		Physics = new Department("Physics", "Defence", this);
 		this.sailingScene = new SailingScreen(this);
+		this.winScreen = new WinScreen(this);
         setScreen(new MainMenu(this));
 	}
 
@@ -66,4 +69,6 @@ public class PirateGame extends Game {
 	public Player getPlayer() { return this.player; }
 
 	public SailingScreen getSailingScene() { return this.sailingScene; }
+
+	public WinScreen getWinScreen() {return this.winScreen;}
 }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.rear_admirals.york_pirates.College;
+import com.rear_admirals.york_pirates.ShipType;
 import com.rear_admirals.york_pirates.screen.combat.CombatScreen;
 import com.rear_admirals.york_pirates.base.BaseActor;
 import com.rear_admirals.york_pirates.PirateGame;
@@ -163,7 +164,8 @@ public class SailingScreen extends BaseScreen {
                 int enemyChance = ThreadLocalRandom.current().nextInt(0, 10001);
                 if (enemyChance <= 10) {
                     System.out.println("Enemy Found in " + name);
-                    College college = region.getCollege();
+                    College college = region.getCollege();                              //College object
+                    Gdx.app.log("Name of Region", name);
                     if (!playerShip.getCollege().getAlly().contains(college)) {
                         System.out.println(name);
                         pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(Brig, college)));
@@ -203,9 +205,17 @@ public class SailingScreen extends BaseScreen {
                     College college = obstacle.getCollege();
                     if (Gdx.input.isKeyPressed(Input.Keys.F)) {
                         System.out.println("A college");
-                        if (!playerShip.getCollege().getAlly().contains(college) && obstacle.getCollege().isBossDead() == false) {
+                        if (!playerShip.getCollege().getAlly().contains(college) && obstacle.getCollege().isBossDead() == false) {  //If enemy ship is not an ally and the boss is still alive, go into battle with boss?
                             System.out.println("Enemy");
-                            pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(15, 15, 15, Brig, college, college.getName() + " Boss", true)));
+
+
+                            ////
+                            Gdx.app.log("CollegeName", obstacle.getName());
+                            ShipType BattleShip = CollegeChecker(obstacle.getName());
+                            pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(BattleShip, college, college.getName() + " Boss", true)));
+                            ////
+
+
                         } else {
                             System.out.println("Ally");
                             pirateGame.setScreen(new CollegeScreen(pirateGame, college));
@@ -263,6 +273,28 @@ public class SailingScreen extends BaseScreen {
             }
         }
     }
+
+    public ShipType CollegeChecker(String name){
+        switch (name){
+            case "derwent":
+               Gdx.app.log("College Name", DerwentCollege.getName());
+                return DerwentCollege;
+            case "vanbrugh":
+                Gdx.app.log("College Name", VanbrughCollege.getName());
+                return VanbrughCollege;
+            case "james":
+                Gdx.app.log("College Name", JamesCollege.getName());
+                return JamesCollege;
+            case "langwith":
+                Gdx.app.log("College Name", LangwithCollege.getName());
+                return LangwithCollege;
+            case "goodricke":
+                Gdx.app.log("College Name", GoodrickeCollege.getName());
+                return GoodrickeCollege;
+        }
+        return Brig;
+    }
+
 
     @Override
     public void render(float delta) {

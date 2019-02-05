@@ -66,10 +66,10 @@ public class Ship extends PhysicsActor {
 	    this.name = name;
     }
 
-    public Ship(int attack, int defence, int accuracy, ShipType type, College college, String name, boolean isBoss) {
-        this.attack = attack;
-        this.defence = defence;
-        this.accuracy = accuracy;
+    public Ship(ShipType type, College college, String name, boolean isBoss) {
+        this.attack = type.getAttack();
+        this.defence = type.getDefence();
+        this.accuracy = type.getAccuracy();
         this.type = type;
         this.name = name;
         this.healthMax = defence*20;
@@ -146,7 +146,7 @@ public class Ship extends PhysicsActor {
     }
 
 	public String getType() {
-		return type.getName();
+		return type.getSubType();
 	}
 
 	public Texture getSailingTexture() { return this.sailingTexture; }
