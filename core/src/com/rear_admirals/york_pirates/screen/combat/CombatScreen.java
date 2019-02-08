@@ -44,6 +44,7 @@ public class CombatScreen extends BaseScreen {
 
     public Player player;
     public Ship enemy;
+    public String enemytexture;
 
     // Control the layout of the stage
     private Table completeAttackTable;
@@ -87,9 +88,21 @@ public class CombatScreen extends BaseScreen {
         setTextures();
         createTable();
 
+
+        //Load seamonster texture for seamonsters, ship2 for college ships
+        if (enemy.getCollege().getName() == "Sea"){
+            enemytexture = "seamonster.png";
+        }
+        else{
+            enemytexture = "ship2.png";
+        }
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth/3);
-        CombatShip enemyShip = new CombatShip("ship2.png",viewwidth/3);                                 //TODO Alter this code to be whatever ship texture we use
+        CombatShip enemyShip = new CombatShip(enemytexture,viewwidth/3);
+
+
+        //TODO Alter this code to be whatever ship texture we use
+
 
         Label shipName = new Label(player.getPlayerShip().getName(),pirateGame.getSkin(), "default_black");
         playerHP = new ProgressBar(0, player.getPlayerShip().getHealthMax(),0.1f,false,pirateGame.getSkin());
@@ -223,6 +236,7 @@ public class CombatScreen extends BaseScreen {
         wood_texture = new Texture("wood_vertical_board_texture.png");
         background_wood = new Image(wood_texture);
         background_wood.setSize(viewwidth, viewheight);
+
     }
 
 

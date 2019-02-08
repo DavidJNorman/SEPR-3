@@ -34,4 +34,5 @@ public class College {
     public static College James = new College("James");
     public static College Goodricke = new College("Goodricke");
     public static College Langwith = new College("Langwith");
+    public static College Sea = new College ("Sea");
 }
