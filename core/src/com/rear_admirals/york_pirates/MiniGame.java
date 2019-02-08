@@ -4,32 +4,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MiniGame {
-    private ArrayList<Goose> Geese;
+    public ArrayList<MinigameGoose> Geese;
     public MiniGame() {
-        Geese = new ArrayList<Goose>();
-        for (int i = 0; i < 4; i++) {
-            Geese.add(new Goose("Goose" + Integer.toString(i)));
-        }
-    }
-
-    public class Goose {
-        private int speed;
-        private String name;
-        Random rand;
-
-        public Goose(String name) {
-            this.name = name;
-            speed = rand.nextInt(11) + 20;
-        }
-
-        public int getSpeed() {
-            return this.speed;
+        Random random = new Random();
+        Geese = new ArrayList<MinigameGoose>();
+        for (int i = 0; i < 5; i++) {
+            Geese.add(new MinigameGoose(random.nextInt(10)+1, 30, (i+1)*110, "Goose" + Integer.toString(i)));
         }
     }
 
     public String GetWinner() {
         String winner = Geese.get(0).name;
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             if (Geese.get(i).speed > Geese.get(i - 1).speed) {
                 winner = Geese.get(i).name;
             }

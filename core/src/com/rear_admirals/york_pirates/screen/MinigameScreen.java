@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.rear_admirals.york_pirates.MinigameGeese;
+import com.rear_admirals.york_pirates.MiniGame;
 import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
@@ -22,7 +22,7 @@ import java.util.Random;
 public class MinigameScreen extends BaseScreen {
     private Player player;
 
-    private Array<MinigameGeese> geeseList;
+    private MiniGame miniGame;
     private Boolean minigamerun = false;
     private Boolean inProgress = false;
     private Table goldTable;
@@ -33,20 +33,13 @@ public class MinigameScreen extends BaseScreen {
     public MinigameScreen(PirateGame main){
         super(main);
 
+        miniGame = new MiniGame();
         this.player = main.getPlayer();
         stage = new Stage(new ScreenViewport());
 
         //FOR TESTING ONLY
         player.setGold(200);
         //FOR TESTING ONLY
-
-
-
-        geeseList = new Array<MinigameGeese>(5);
-
-
-
-
 
     }
 
@@ -77,10 +70,8 @@ public class MinigameScreen extends BaseScreen {
 //        goldTable.setY(600);
 //        goldTable.setX(600);
 
-        Random random = new Random();
         for (int y = 0; y<5; y=y+1){
-            this.geeseList.add(new MinigameGeese(random.nextInt(10)+1, 30, (y+1)*110));
-            Gdx.app.log(geeseList.get(y).toString(), "words");
+            Gdx.app.log(miniGame.Geese.get(y).toString(), "words");
         }
     }
 
@@ -107,7 +98,7 @@ public class MinigameScreen extends BaseScreen {
         stage.clear();
             inProgress = true;
             for (int x = 0; x<5; x=x+1){
-                stage.addActor(geeseList.get(x).getImage());
+                stage.addActor(miniGame.Geese.get(x).getImage());
 
             }
 
@@ -117,10 +108,10 @@ public class MinigameScreen extends BaseScreen {
 
         for (int x = 0; x<5; x=x+1){
             //Gdx.app.log(String.valueOf(geeseList.get(x).xPos), "xpos before");
-            geeseList.get(x).xPos=geeseList.get(x).xPos + geeseList.get(x).speed;
-            geeseList.get(x).getImage().setX(geeseList.get(x).xPos);
-            if(geeseList.get(x).xPos>viewwidth/1.2){
-                Gdx.app.log(geeseList.get(x).toString(), "won");
+            miniGame.Geese.get(x).xPos += miniGame.Geese.get(x).speed;
+            miniGame.Geese.get(x).getImage().setX(miniGame.Geese.get(x).xPos);
+            if(miniGame.Geese.get(x).xPos>viewwidth/1.2){
+                Gdx.app.log(miniGame.Geese.get(x).toString(), "won");
                 minigamerun = false;
             }
             //Gdx.app.log(String.valueOf(geeseList.get(x).xPos), "xpos after");
