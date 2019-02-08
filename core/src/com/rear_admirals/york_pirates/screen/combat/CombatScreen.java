@@ -1,6 +1,7 @@
 package com.rear_admirals.york_pirates.screen.combat;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -372,12 +373,15 @@ public class CombatScreen extends BaseScreen {
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
                 player.addGold(20);
                 player.addPoints(20);
+
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
                     CheckWin();
                 }
+
+
 
                 break;
             case PLAYER_FLEES:
@@ -387,7 +391,7 @@ public class CombatScreen extends BaseScreen {
 
                 break;
             case SCENE_RETURN:
-                enemy.setVisible(false);
+//                enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
                 player.getPlayerShip().setAccelerationXY(0,0);
                 player.getPlayerShip().setAnchor(true);

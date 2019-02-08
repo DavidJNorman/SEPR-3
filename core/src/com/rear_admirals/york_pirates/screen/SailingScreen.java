@@ -13,13 +13,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.rear_admirals.york_pirates.College;
-import com.rear_admirals.york_pirates.ShipType;
+import com.rear_admirals.york_pirates.*;
 import com.rear_admirals.york_pirates.screen.combat.CombatScreen;
 import com.rear_admirals.york_pirates.base.BaseActor;
-import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.base.BaseScreen;
-import com.rear_admirals.york_pirates.Ship;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -37,6 +34,7 @@ public class SailingScreen extends BaseScreen {
     private ArrayList<BaseActor> obstacleList;
     private ArrayList<BaseActor> removeList;
     private ArrayList<BaseActor> regionList;
+    private ArrayList<BaseActor> weatherRegionList;
 
     private int tileSize = 64;
     private int tileCountWidth = 160;
@@ -58,20 +56,28 @@ public class SailingScreen extends BaseScreen {
     private Label accuracyBuff;
     private Label mapMessage;
     private Label hintMessage;
+    private Label weatherAffectedRegion;
+    private Label yourCurrentWeatherRegion;
+    private Label currentWeather;
 
 
     private Float timer;
     private float messageDisplayTimer;
     private boolean unlockMessageDisplayed = false;
 
+    private Weather weather;
+
     public SailingScreen(final PirateGame main){
         super(main);
+
+        weather = new Weather(main);
 
         playerShip = main.getPlayer().getPlayerShip();
         System.out.println(playerShip.getName());
 
         mainStage.addActor(playerShip);
         System.out.println("playerShip added");
+
 
         Table uiTable = new Table();
 
@@ -111,11 +117,20 @@ public class SailingScreen extends BaseScreen {
 
         mapMessage = new Label("", main.getSkin(), "default_black");
         hintMessage = new Label("", main.getSkin(),"default_black");
+        weatherAffectedRegion = new Label("", main.getSkin(),"default_black");
+        yourCurrentWeatherRegion = new Label("", main.getSkin(), "default_black");
+        currentWeather = new Label("", main.getSkin(), "default_black");
 
         Table messageTable = new Table();
         messageTable.add(mapMessage);
         messageTable.row();
         messageTable.add(hintMessage);
+        messageTable.row();
+        messageTable.add(weatherAffectedRegion);
+        messageTable.row();
+        messageTable.add(yourCurrentWeatherRegion);
+        messageTable.row();
+        messageTable.add(currentWeather);
 
         messageTable.setFillParent(true);
         messageTable.top();
@@ -125,6 +140,8 @@ public class SailingScreen extends BaseScreen {
         obstacleList = new ArrayList<BaseActor>();
         removeList = new ArrayList<BaseActor>();
         regionList = new ArrayList<BaseActor>();
+        weatherRegionList = new ArrayList<BaseActor>();
+
 
         // set up tile map, renderer and camera
         tiledMap = new TmxMapLoader().load("game_map.tmx");
@@ -137,6 +154,7 @@ public class SailingScreen extends BaseScreen {
         createObjectData();
         createPhysicData();
         createRegionData();
+        createWeatherRegionData();
 
 
 
@@ -229,6 +247,8 @@ public class SailingScreen extends BaseScreen {
 
         if (!y) hintMessage.setText("");
 
+
+
         for (BaseActor object : removeList) {
             object.remove();
         }
@@ -272,6 +292,32 @@ public class SailingScreen extends BaseScreen {
                 messageDisplayTimer = 0;
             }
         }
+//        weather.regionUPdateTimerUpdate(delta);
+//        weather.weatherUpdateTimerUpdate(delta);
+        weather.updateWeatherRegion(delta);
+        weatherAffectedRegion.setText("weather current affects region"+Integer.toString(weather.getRegion()));
+
+        for(BaseActor weatherRegion : weatherRegionList){
+            if(playerShip.overlaps(weatherRegion, false)){
+                yourCurrentWeatherRegion.setText("you current in" + weatherRegion.getName());
+                int region = weather.getRegion();
+                if(weatherRegion.getName().equals("region"+Integer.toString(region))){
+
+                    weather.ifUpdate(delta);
+                    currentWeather.setText("Current Weather in affected area is" + weather.getWeather());
+
+                }else {
+                    currentWeather.setText("");
+
+                }
+
+
+            }
+        }
+
+
+
+
     }
 
     public ShipType CollegeChecker(String name){
@@ -340,12 +386,7 @@ public class SailingScreen extends BaseScreen {
         MapObjects objects = tiledMap.getLayers().get("RegionData").getObjects();
         for (MapObject object : objects) {
             if (object instanceof RectangleMapObject) {
-//                RectangleMapObject rectangleObject = (RectangleMapObject) object;
-//                Rectangle r = rectangleObject.getRectangle();
-//
-//                BaseActor region = new BaseActor();
-//                region.setPosition(r.x, r.y);
-//                region.setSize(r.width, r.height);
+
                 BaseActor region = setUpBaseActor(object);
                 region.setRectangleBoundary();
                 region.setName(object.getName());
@@ -369,12 +410,6 @@ public class SailingScreen extends BaseScreen {
                     case "langwithregion" :
                         region.setCollege(Langwith);
                 }
-
-//                if (object.getName().equals("derwentregion")) region.setCollege(Derwent);
-//                else if (object.getName().equals("jamesregion")) region.setCollege(James);
-//                else if (object.getName().equals("vanbrughregion")) region.setCollege(Vanbrugh);
-//                else if (object.getName().equals("goodrickeregion")) region.setCollege(Goodricke);
-//                else if (object.getName().equals("langwithregion")) region.setCollege(Langwith);
                 regionList.add(region);
             } else {
                 System.err.println("Unknown RegionData object.");
@@ -387,15 +422,10 @@ public class SailingScreen extends BaseScreen {
         MapObjects objects = tiledMap.getLayers().get("PhysicsData").getObjects();
         for (MapObject object : objects) {
             if (object instanceof RectangleMapObject) {
-//                RectangleMapObject rectangleObject = (RectangleMapObject) object;
-//                Rectangle r = rectangleObject.getRectangle();
-//
-//                BaseActor solid = new BaseActor();
-//                solid.setPosition(r.x, r.y);
-//                solid.setSize(r.width, r.height);
                 BaseActor solid = setUpBaseActor(object);
                 solid.setName(object.getName());
                 solid.setRectangleBoundary();
+
                 String objectName = object.getName();
 
                 if (objectName.equals("derwent")) solid.setCollege(Derwent);
@@ -415,21 +445,38 @@ public class SailingScreen extends BaseScreen {
         }
     }
 
+    private void createWeatherRegionData(){
+        MapObjects objects = tiledMap.getLayers().get("WeatherRegion").getObjects();
+        for (MapObject object : objects){
+            if(object instanceof RectangleMapObject){
+                BaseActor weatherRegion = setUpBaseActor(object);
+                weatherRegion.setName(object.getName());
+                weatherRegion.setRectangleBoundary();
+                weatherRegionList.add(weatherRegion);
+
+
+            }
+        }
+    }
+
     //create physic collision information for player and objects(currently null)
     private void createObjectData(){
         MapObjects objects = tiledMap.getLayers().get("ObjectData").getObjects();
         for (MapObject object : objects) {
             String name = object.getName();
 
+
             // all object data assumed to be stored as rectangles
             RectangleMapObject rectangleObject = (RectangleMapObject)object;
             Rectangle r = rectangleObject.getRectangle();
+
 
             if (name.equals("player")){
                 playerShip.setPosition(r.x, r.y);
             } else{
                 System.err.println("Unknown tilemap object: " + name);
             }
+
         }
 
     }
@@ -443,6 +490,10 @@ public class SailingScreen extends BaseScreen {
         baseActor.setPosition(r.x, r.y);
         baseActor.setSize(r.width, r.height);
         return baseActor;
-
     }
+
+
+
+
+
 }

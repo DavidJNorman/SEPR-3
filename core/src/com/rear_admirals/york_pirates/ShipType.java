@@ -40,7 +40,7 @@ public class ShipType {
 
 
 	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 10, 5);
-	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 1, 5);
+	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 12, 5);
 	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 15, 5);
 	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 20, 5);
 
