@@ -302,7 +302,10 @@ public class SailingScreen extends BaseScreen {
             playerShip.setDeceleration(100);
         }
     }
+    @Override
+    public void show(){
 
+    }
     @Override
     public void dispose () {
         mainStage.dispose();
