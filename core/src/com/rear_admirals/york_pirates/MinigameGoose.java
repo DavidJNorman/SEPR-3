@@ -10,10 +10,10 @@ public class MinigameGoose {
     private Image gooseImage;
     public int xPos;
     public int yPos;
-    public String name;
+    public int id;
 
-    public MinigameGoose(int speed, int xPos, int yPos, String name) {
-        this.name = name;
+    public MinigameGoose(int speed, int xPos, int yPos, int id) {
+        this.id = id;
         this.speed = speed;
         this.xPos = xPos;
         this.yPos = yPos;

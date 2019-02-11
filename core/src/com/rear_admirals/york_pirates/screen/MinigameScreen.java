@@ -29,6 +29,8 @@ public class MinigameScreen extends BaseScreen {
     private Label goldAmount;
     private Label goldString;
     private Stage stage;
+    private int betOn=6;
+    private int lastWon = 6;
 
     public MinigameScreen(PirateGame main){
         super(main);
@@ -57,9 +59,7 @@ public class MinigameScreen extends BaseScreen {
         textButton.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                minigamerun = true;
-                player.setGold(player.getGold()-100);
-                Gdx.app.log(String.valueOf(player.getGold()), "gold");
+                bet();
 
             }
         });
@@ -74,7 +74,58 @@ public class MinigameScreen extends BaseScreen {
             Gdx.app.log(miniGame.Geese.get(y).toString(), "words");
         }
     }
+    public void bet(){
+        stage.clear();
+         Table betTable = new Table();
+         betTable.setFillParent(true);
+         TextButton firstBet = new TextButton("Bet 100G on Goose 1", pirateGame.getSkin());
+         firstBet.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                minigamerun = true;
+                betOn = 0;
+            }
+        });
+        TextButton secondBet = new TextButton("Bet 100G on Goose 2", pirateGame.getSkin());
+        secondBet.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                minigamerun = true;
+                betOn = 1;
+            }
+        });
+        TextButton thirdBet = new TextButton("Bet 100G on Goose 3", pirateGame.getSkin());
+        thirdBet.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                minigamerun = true;
+                betOn = 2;
+            }
+        });
+        TextButton fourthBet = new TextButton("Bet 100G on Goose 4", pirateGame.getSkin());
+         fourthBet.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                minigamerun = true;
+                betOn = 3;
+            }
+        });
+        TextButton fifthBet = new TextButton("Bet 100G on Goose 5", pirateGame.getSkin());
+         fifthBet.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                minigamerun = true;
+                betOn = 4;
+            }
+        });
+         betTable.add(firstBet);
+         betTable.add(secondBet);
+         betTable.add(thirdBet);
+         betTable.add(fourthBet);
+         betTable.add(fifthBet);
+         stage.addActor(betTable);
 
+    }
     @Override
     public void update(float delta) {
 
@@ -90,10 +141,12 @@ public class MinigameScreen extends BaseScreen {
             minigame();
         }
 
+
         stage.draw();
         stage.act();
 
     }
+
     public void minigameSetup(){
         stage.clear();
             inProgress = true;
@@ -113,6 +166,13 @@ public class MinigameScreen extends BaseScreen {
             if(miniGame.Geese.get(x).xPos>viewwidth/1.2){
                 Gdx.app.log(miniGame.Geese.get(x).toString(), "won");
                 minigamerun = false;
+                lastWon = miniGame.Geese.get(x).id;
+                if (lastWon==betOn){
+                    player.setGold(player.getGold()+200);
+                    Gdx.app.log(String.valueOf(player.getGold()), "post win gold");
+                }
+                inProgress = false;
+
             }
             //Gdx.app.log(String.valueOf(geeseList.get(x).xPos), "xpos after");
 
