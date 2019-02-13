@@ -68,7 +68,7 @@ public class CombatScreen extends BaseScreen {
     private int animationIndex = 0;
     private String displayText = "";
 
-    public CombatScreen(final PirateGame pirateGame, Ship enemy){
+    public CombatScreen(final PirateGame pirateGame, Ship enemy) {
         // Calls superclass BaseScreen
         super(pirateGame);
 
@@ -82,38 +82,37 @@ public class CombatScreen extends BaseScreen {
 
         combatStack = new Stack();
 
-        button_pad_bottom = viewheight/24f;
-        button_pad_right = viewwidth/32f;
+        button_pad_bottom = viewheight / 24f;
+        button_pad_right = viewwidth / 32f;
 
         setTextures();
         createTable();
 
 
         //Load seamonster texture for seamonsters, ship2 for college ships
-        if (enemy.getCollege().getName() == "Sea"){
+        if (enemy.getCollege().getName() == "Sea") {
             enemytexture = "seamonster.png";
-        }
-        else{
+        } else {
             enemytexture = "ship2.png";
         }
         // Instantiate both the ships for the battle
-        CombatShip myShip = new CombatShip("ship1.png", viewwidth/3);
-        CombatShip enemyShip = new CombatShip(enemytexture,viewwidth/3);
+        CombatShip myShip = new CombatShip("ship1.png", viewwidth / 3);
+        CombatShip enemyShip = new CombatShip(enemytexture, viewwidth / 3);
 
 
         //TODO Alter this code to be whatever ship texture we use
 
 
-        Label shipName = new Label(player.getPlayerShip().getName(),pirateGame.getSkin(), "default_black");
-        playerHP = new ProgressBar(0, player.getPlayerShip().getHealthMax(),0.1f,false,pirateGame.getSkin());
-        playerHPLabel = new Label(player.getPlayerShip().getHealth()+"/" + player.getPlayerShip().getHealthMax(), pirateGame.getSkin());
+        Label shipName = new Label(player.getPlayerShip().getName(), pirateGame.getSkin(), "default_black");
+        playerHP = new ProgressBar(0, player.getPlayerShip().getHealthMax(), 0.1f, false, pirateGame.getSkin());
+        playerHPLabel = new Label(player.getPlayerShip().getHealth() + "/" + player.getPlayerShip().getHealthMax(), pirateGame.getSkin());
 
-        playerHP.getStyle().background.setMinHeight(playerHP.getPrefHeight()*2); //Setting vertical size of progress slider (Class implementation is slightly weird)
+        playerHP.getStyle().background.setMinHeight(playerHP.getPrefHeight() * 2); //Setting vertical size of progress slider (Class implementation is slightly weird)
         playerHP.getStyle().knobBefore.setMinHeight(playerHP.getPrefHeight());
 
-        Label enemyName = new Label(enemy.getName(), pirateGame.getSkin(),"default_black");
-        enemyHP = new ProgressBar(0, enemy.getHealthMax(),0.1f,false,pirateGame.getSkin());
-        enemyHPLabel = new Label(enemy.getHealth()+"/" + enemy.getHealthMax(), pirateGame.getSkin());
+        Label enemyName = new Label(enemy.getName(), pirateGame.getSkin(), "default_black");
+        enemyHP = new ProgressBar(0, enemy.getHealthMax(), 0.1f, false, pirateGame.getSkin());
+        enemyHPLabel = new Label(enemy.getHealth() + "/" + enemy.getHealthMax(), pirateGame.getSkin());
 
         playerHP.setValue(player.getPlayerShip().getHealthMax());
         enemyHP.setValue(enemy.getHealthMax());
@@ -121,17 +120,17 @@ public class CombatScreen extends BaseScreen {
         Table playerHPTable = new Table();
         Table enemyHPTable = new Table();
 
-        playerHPTable.add(playerHPLabel).padRight(viewwidth/36f);
-        playerHPTable.add(playerHP).width(viewwidth/5);
+        playerHPTable.add(playerHPLabel).padRight(viewwidth / 36f);
+        playerHPTable.add(playerHP).width(viewwidth / 5);
 
-        enemyHPTable.add(enemyHPLabel).padRight(viewwidth/36f);
-        enemyHPTable.add(enemyHP).width(viewwidth/5);
+        enemyHPTable.add(enemyHPLabel).padRight(viewwidth / 36f);
+        enemyHPTable.add(enemyHP).width(viewwidth / 5);
 
-        Label screenTitle = new Label("Combat Mode", pirateGame.getSkin(),"title_black");
+        Label screenTitle = new Label("Combat Mode", pirateGame.getSkin(), "title_black");
         screenTitle.setAlignment(Align.center);
 
-        textBox = new TextButton("You encountered a "+enemy.getCollege().getName()+" "+enemy.getType()+"!", pirateGame.getSkin());
-        textBox.addListener(new ClickListener(){
+        textBox = new TextButton("You encountered a " + enemy.getCollege().getName() + " " + enemy.getType() + "!", pirateGame.getSkin());
+        textBox.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (textAnimation) {
@@ -167,16 +166,16 @@ public class CombatScreen extends BaseScreen {
         descriptionLabel.setAlignment(Align.center);
 
         descriptionTable.center();
-        descriptionTable.add(descriptionLabel).uniform().pad(0,button_pad_right,0,button_pad_right).size(viewwidth/2 - button_pad_right*2, viewheight/12).top();
+        descriptionTable.add(descriptionLabel).uniform().pad(0, button_pad_right, 0, button_pad_right).size(viewwidth / 2 - button_pad_right * 2, viewheight / 12).top();
         descriptionTable.row();
         descriptionTable.add(fleeButton).uniform();
 
         attackTable.row();
-        attackTable.add(button1).uniform().width(viewwidth/5).padRight(button_pad_right);
-        attackTable.add(button2).uniform().width(viewwidth/5);
+        attackTable.add(button1).uniform().width(viewwidth / 5).padRight(button_pad_right);
+        attackTable.add(button2).uniform().width(viewwidth / 5);
         attackTable.row().padTop(button_pad_bottom);
-        attackTable.add(button3).uniform().width(viewwidth/5).padRight(button_pad_right);
-        attackTable.add(button4).uniform().width(viewwidth/5);
+        attackTable.add(button3).uniform().width(viewwidth / 5).padRight(button_pad_right);
+        attackTable.add(button4).uniform().width(viewwidth / 5);
 
         rootTable.row().width(viewwidth*0.8f);
         rootTable.add(screenTitle).colspan(2);
@@ -244,9 +243,16 @@ public class CombatScreen extends BaseScreen {
     public void SetupEnemyAttacks(){
         // Setup Enemy attacks - may need to be modified if you want to draw attacks from enemy's class
         enemyAttacks = new ArrayList<Attack>();
-        enemyAttacks.add(Attack.attackMain);
-        enemyAttacks.add(GrapeShot.attackGrape);
-        enemyAttacks.add(Attack.attackSwivel);
+        if (enemy.getCollege().getName() == "Sea") {
+            enemyAttacks.add(Attack.attackBite);
+            enemyAttacks.add(Attack.attackTail);
+            enemyAttacks.add(Attack.attackSlam);
+        } else{
+            enemyAttacks.add(Attack.attackMain);
+            enemyAttacks.add(GrapeShot.attackGrape);
+            enemyAttacks.add(Attack.attackSwivel);
+
+        }
 
         Gdx.input.setInputProcessor(uiStage);
 
