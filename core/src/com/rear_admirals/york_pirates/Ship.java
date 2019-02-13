@@ -44,7 +44,7 @@ public class Ship extends PhysicsActor {
         this.health = healthMax;
         this.college = college;
         this.type = type;
-        this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
+        this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png")); //TODO: Uncomment, Commented out for testing purposes.
         setupShip();
     }
 
@@ -57,7 +57,7 @@ public class Ship extends PhysicsActor {
         this.health = healthMax;
         this.college = college;
         this.type = type;
-        this.sailingTexture = new Texture(Gdx.files.internal(texturePath));
+        this.sailingTexture = new Texture(Gdx.files.internal(texturePath)); //TODO: Uncomment, Commented out for testing purposes.
         setupShip();
     }
 
@@ -75,14 +75,14 @@ public class Ship extends PhysicsActor {
         this.healthMax = defence*20;
         this.college = college;
         this.health = healthMax;
-        this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png"));
+        this.sailingTexture = new Texture(Gdx.files.internal("ship (1).png")); //TODO: Uncomment, Commented out for testing purposes.
         this.isBoss = isBoss;
         setupShip();
     }
 
     public void setupShip(){
-        this.setWidth(this.sailingTexture.getWidth());
-        this.setHeight(this.sailingTexture.getHeight());
+        this.setWidth(this.sailingTexture.getWidth()); //TODO: Uncomment, Commented out for testing purposes.
+        this.setHeight(this.sailingTexture.getHeight()); //TODO: Uncomment, Commented out for testing purposes.
         this.setOriginCentre();
         this.setMaxSpeed(200);
         this.setDeceleration(20);

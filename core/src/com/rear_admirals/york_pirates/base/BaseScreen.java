@@ -19,8 +19,8 @@ public abstract class BaseScreen implements Screen {
 
     public BaseScreen(PirateGame game){
         this.pirateGame = game;
-        this.mainStage = new Stage(new FitViewport(this.viewwidth, this.viewheight));
-        this.uiStage = new Stage(new FitViewport(this.viewwidth, this.viewheight));
+        this.mainStage = new Stage(new FitViewport(this.viewwidth, this.viewheight)); //TODO: Uncomment, Commented out for testing purposes.
+        this.uiStage = new Stage(new FitViewport(this.viewwidth, this.viewheight)); //TODO: Uncomment, Commented out for testing purposes.
     }
 
     public abstract void update(float delta);
