@@ -17,6 +17,7 @@ import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
 
+import javax.xml.soap.Text;
 import java.util.Random;
 
 public class MinigameScreen extends BaseScreen {
@@ -65,6 +66,15 @@ public class MinigameScreen extends BaseScreen {
         });
         goldTable.row();
         goldTable.add(textButton);
+        final TextButton quitButton = new TextButton("Quit", pirateGame.getSkin());
+        quitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                pirateGame.setScreen(pirateGame.getSailingScene());
+            }
+        });
+        goldTable.row();
+        goldTable.add(quitButton);
 
         //This breaks it for some reason..
 //        goldTable.setY(600);
@@ -83,7 +93,7 @@ public class MinigameScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 minigamerun = true;
-                betOn = 0;
+                betOn = 4;
             }
         });
         TextButton secondBet = new TextButton("Bet 100G on Goose 2", pirateGame.getSkin());
@@ -91,7 +101,7 @@ public class MinigameScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 minigamerun = true;
-                betOn = 1;
+                betOn = 3;
             }
         });
         TextButton thirdBet = new TextButton("Bet 100G on Goose 3", pirateGame.getSkin());
@@ -107,7 +117,7 @@ public class MinigameScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 minigamerun = true;
-                betOn = 3;
+                betOn = 1;
             }
         });
         TextButton fifthBet = new TextButton("Bet 100G on Goose 5", pirateGame.getSkin());
@@ -115,7 +125,7 @@ public class MinigameScreen extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 minigamerun = true;
-                betOn = 4;
+                betOn = 0;
             }
         });
          betTable.add(firstBet);
@@ -164,17 +174,17 @@ public class MinigameScreen extends BaseScreen {
             miniGame.Geese.get(x).xPos += miniGame.Geese.get(x).speed;
             miniGame.Geese.get(x).getImage().setX(miniGame.Geese.get(x).xPos);
             if(miniGame.Geese.get(x).xPos>viewwidth/1.2){
-                Gdx.app.log(miniGame.Geese.get(x).toString(), "won");
+                Gdx.app.log(String.valueOf(miniGame.Geese.get(x).id), "won");
                 minigamerun = false;
                 lastWon = miniGame.Geese.get(x).id;
                 if (lastWon==betOn){
                     player.setGold(player.getGold()+200);
                     Gdx.app.log(String.valueOf(player.getGold()), "post win gold");
                 }
-                inProgress = false;
+                pirateGame.setScreen(new MinigameScreen(pirateGame));
 
             }
-            //Gdx.app.log(String.valueOf(geeseList.get(x).xPos), "xpos after");
+
 
         }
     }

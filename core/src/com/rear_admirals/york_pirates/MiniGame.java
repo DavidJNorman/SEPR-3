@@ -8,9 +8,10 @@ public class MiniGame {
     public MiniGame() {
         Random random = new Random();
         Geese = new ArrayList<MinigameGoose>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             Geese.add(new MinigameGoose(random.nextInt(10)+1, 30, (i+1)*110, i));
         }
+        Geese.add(new MinigameGoose(12, 30, 6*100, 4));
     }
 
     public int GetWinner() {
