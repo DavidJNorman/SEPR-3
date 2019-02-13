@@ -18,7 +18,9 @@ public class PirateGame extends Game {
 	private SailingScreen sailingScene;
 	public static Department Chemistry;
 	public static Department Physics;
+	public static Department ComputerScience;
 	private WinScreen winScreen;
+
 
 	public void create(){
 		Gdx.graphics.setTitle("York Pirates!");
@@ -29,6 +31,7 @@ public class PirateGame extends Game {
         player = new Player();
 		Chemistry = new Department("Chemistry", "Attack", this);
 		Physics = new Department("Physics", "Defence", this);
+		ComputerScience = new Department("ComputerScience", "Accuracy", this);
 		this.sailingScene = new SailingScreen(this);
 		this.winScreen = new WinScreen(this);
         setScreen(new MainMenu(this));

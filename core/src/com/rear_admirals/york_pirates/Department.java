@@ -22,8 +22,10 @@ public class Department {
             if (product == "Defence") {
                 pirateGame.getPlayer().getPlayerShip().setDefence(pirateGame.getPlayer().getPlayerShip().getDefence() + 1);
                 return true;
-            }
-            else {
+            } else if (product == "Accuracy") {
+                pirateGame.getPlayer().getPlayerShip().setDefence(pirateGame.getPlayer().getPlayerShip().getAccuracy() + 1);
+                return true;
+            } else {
                 pirateGame.getPlayer().getPlayerShip().setAttack(pirateGame.getPlayer().getPlayerShip().getAttack() + 1);
                 return true;
             }
@@ -37,6 +39,8 @@ public class Department {
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getDefence() - 3)));
         } else if (product == "Attack"){
             return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAttack() - 3)));
+        }else if (product == "Accuracy"){
+            return (int) (base_price * pow(2, max(0, pirateGame.getPlayer().getPlayerShip().getAccuracy() - 3)));
         }
         else {return 0;}
     }

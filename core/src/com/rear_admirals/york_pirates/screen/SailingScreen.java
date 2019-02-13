@@ -24,6 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.rear_admirals.york_pirates.College.*;
 import static com.rear_admirals.york_pirates.PirateGame.Chemistry;
 import static com.rear_admirals.york_pirates.PirateGame.Physics;
+import static com.rear_admirals.york_pirates.PirateGame.ComputerScience;
 import static com.rear_admirals.york_pirates.ShipType.*;
 
 public class SailingScreen extends BaseScreen {
@@ -436,6 +437,7 @@ public class SailingScreen extends BaseScreen {
                 else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
                 else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
+                else if (objectName.equals("ComputerScience")) solid.setDepartment(ComputerScience);
                 else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
                 else if (objectName.equals("langwith")) solid.setCollege(Langwith);
                 else{
