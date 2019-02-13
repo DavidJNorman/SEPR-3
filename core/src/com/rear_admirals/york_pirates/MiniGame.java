@@ -2,7 +2,7 @@ package com.rear_admirals.york_pirates;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+//[NEW ASSESSMENT 3] All this code was written within assessment 3 for a Minigame system.
 public class MiniGame {
     public ArrayList<MinigameGoose> Geese;
     public MiniGame() {

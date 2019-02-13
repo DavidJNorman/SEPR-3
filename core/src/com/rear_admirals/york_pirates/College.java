@@ -22,9 +22,7 @@ public class College {
         ally.add(newAlly);
     }
 
-    public boolean isBossDead() {
-        return bossDead;
-    }
+    public boolean isBossDead() { return bossDead; }
     public void setBossDead(boolean bossDead) {
         this.bossDead = bossDead;
     }
@@ -32,6 +30,8 @@ public class College {
 	public static College Derwent = new College("Derwent");
     public static College Vanbrugh = new College("Vanbrugh");
     public static College James = new College("James");
+
+    //[NEW ASSESSMENT 3] Two new colleges added
     public static College Goodricke = new College("Goodricke");
     public static College Langwith = new College("Langwith");
 }

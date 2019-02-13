@@ -3,7 +3,7 @@ package com.rear_admirals.york_pirates;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
+//[NEW ASSESSMENT 3] All this code was written within assessment 3 for a minigame.
 public class MinigameGoose {
     public int speed;
     private Texture gooseTexture;

@@ -1,5 +1,5 @@
 package com.rear_admirals.york_pirates;
-
+//[NEW ASSESSMENT 3] All this code was written within assessment 3 for a shop based purchasable buff system.
 public class BuffConstant {
     public String ATTACK_BUFF_TAG = "attack";
     public int ATTACK_BUFF = 10;

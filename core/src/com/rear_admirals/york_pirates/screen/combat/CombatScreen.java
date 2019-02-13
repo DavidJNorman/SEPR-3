@@ -403,6 +403,8 @@ public class CombatScreen extends BaseScreen {
                 player.getPlayerShip().setAnchor(true);
                 System.out.println("END OF COMBAT");
                 //check buff effect
+
+                //[NEW ASSESSMENT 3] Buffs added with assessment 3
                 checkBuffTurn();
                 System.out.println("player attack buff turns:" + (player.getAttackBuffTurns()));
                 System.out.println("player attack" + player.getPlayerShip().getAttack());
@@ -506,7 +508,7 @@ public class CombatScreen extends BaseScreen {
             }
         }
     }
-
+    //[NEW ASSESSMENT 3] The buff system was implemented within this assessment.
     private void checkBuffTurn(){
         if(player.getAttackBuffTurns() > 0){
             player.setAttackBuffTurns(player.getAttackBuffTurns() - 1);

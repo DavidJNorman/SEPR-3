@@ -1,7 +1,7 @@
 package com.rear_admirals.york_pirates;
 
 import java.util.Random;
-
+//[NEW ASSESSMENT 3] All this code was written within assessment 3 for a weather system.
 public class Weather {
     private PirateGame main;
     private boolean weatherUpdateNeeded;

@@ -24,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.rear_admirals.york_pirates.College.*;
 import static com.rear_admirals.york_pirates.PirateGame.Chemistry;
 import static com.rear_admirals.york_pirates.PirateGame.Physics;
-import static com.rear_admirals.york_pirates.PirateGame.ComputerScience;
+import static com.rear_admirals.york_pirates.PirateGame.ComputerScience; //[NEW ASSESSMENT 3] new Department
 import static com.rear_admirals.york_pirates.ShipType.*;
 
 public class SailingScreen extends BaseScreen {
@@ -127,6 +127,7 @@ public class SailingScreen extends BaseScreen {
         messageTable.row();
         messageTable.add(hintMessage);
         messageTable.row();
+        //[NEW ASSESSMENT 3] Weather is new.
         messageTable.add(weatherAffectedRegion);
         messageTable.row();
         messageTable.add(yourCurrentWeatherRegion);
@@ -151,7 +152,7 @@ public class SailingScreen extends BaseScreen {
         tiledCamera.setToOrtho(false, viewwidth, viewheight);
         tiledCamera.update();
 
-
+        //[NEW ASSESSMENT 3] Code here was cleaned up to make it easier to read and use.
         createObjectData();
         createPhysicData();
         createRegionData();
@@ -228,7 +229,7 @@ public class SailingScreen extends BaseScreen {
                             System.out.println("Enemy");
 
 
-                            ////
+                            //[NEW ASSESSMENT 3] these lines of code simply make sure you battle the correct shape based on college interacted with.
                             Gdx.app.log("CollegeName", obstacle.getName());
                             ShipType BattleShip = CollegeChecker(obstacle.getName());
                             pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(BattleShip, college, college.getName() + " Boss", true)));
@@ -278,10 +279,13 @@ public class SailingScreen extends BaseScreen {
             timer -= 1;
         }
         pointsLabel.setText(Integer.toString(pirateGame.getPlayer().getPoints()));
+
+        //[NEW ASSESSMENT 3] Rest of code of this update method is new:
         attackBuff.setText(Integer.toString(pirateGame.getPlayer().getAttackBuffTurns()));
         accuracyBuff.setText(Integer.toString(pirateGame.getPlayer().getAccuracyBuffTurns()));
 
-        //new area unlocked message
+
+        //New area unlocked message
         if(playerShip.getCollege().getAlly().contains(James)
                 && playerShip.getCollege().getAlly().contains(Vanbrugh)
                 && !unlockMessageDisplayed){
@@ -321,7 +325,7 @@ public class SailingScreen extends BaseScreen {
 
     }
 
-    public ShipType CollegeChecker(String name){
+    public ShipType CollegeChecker(String name){ //[NEW ASSESSMENT 3] This simple switch function is used to return the correct college ShipType based on name passed in.
         switch (name){
             case "derwent":
                Gdx.app.log("College Name", DerwentCollege.getName());
@@ -408,6 +412,7 @@ public class SailingScreen extends BaseScreen {
                     case "vanbrughregion" :
                         region.setCollege(Vanbrugh);
                         break;
+                    //[NEW ASSESSMENT 3] new regions added
                     case "goodrickeregion":
                         region.setCollege(Goodricke);
                         break;
@@ -437,6 +442,8 @@ public class SailingScreen extends BaseScreen {
                 else if (objectName.equals("vanbrugh")) solid.setCollege(Vanbrugh);
                 else if (objectName.equals("chemistry"))solid.setDepartment(Chemistry);
                 else if (objectName.equals("physics")) solid.setDepartment(Physics);
+
+                //[NEW ASSESSMENT 3] These three lines were added to create the physics data for the new buildings.
                 else if (objectName.equals("ComputerScience")) solid.setDepartment(ComputerScience);
                 else if (objectName.equals("goodricke")) solid.setCollege(Goodricke);
                 else if (objectName.equals("langwith")) solid.setCollege(Langwith);
@@ -450,7 +457,7 @@ public class SailingScreen extends BaseScreen {
         }
     }
 
-    private void createWeatherRegionData(){
+    private void createWeatherRegionData(){ //[NEW ASSESSMENT 3] This was added for a weather system.
         MapObjects objects = tiledMap.getLayers().get("WeatherRegion").getObjects();
         for (MapObject object : objects){
             if(object instanceof RectangleMapObject){
