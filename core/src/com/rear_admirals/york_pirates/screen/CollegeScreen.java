@@ -2,10 +2,12 @@ package com.rear_admirals.york_pirates.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.rear_admirals.york_pirates.BuffConstant;
@@ -126,6 +128,14 @@ public class CollegeScreen extends BaseScreen {
             }
         });
 
+        final TextButton minigameButton = new TextButton("Geese Racing", main.getSkin());
+        minigameButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                pirateGame.setScreen(new MinigameScreen(pirateGame));
+            }
+        });
+
 
 
 
@@ -139,7 +149,8 @@ public class CollegeScreen extends BaseScreen {
         optionsTable.add(attackBuff);
         optionsTable.row();
         optionsTable.add(accuracyButton);
-
+        optionsTable.row();
+        optionsTable.add(minigameButton);
 
         mainStage.addActor(optionsTable);
         Gdx.input.setInputProcessor(mainStage);
