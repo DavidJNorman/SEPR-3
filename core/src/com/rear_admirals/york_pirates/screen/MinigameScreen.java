@@ -35,37 +35,42 @@ public class MinigameScreen extends BaseScreen {
 
     public MinigameScreen(PirateGame main){
         super(main);
-
         miniGame = new MiniGame();
         this.player = main.getPlayer();
         stage = new Stage(new ScreenViewport());
-
-        //FOR TESTING ONLY
-        player.setGold(200);
-        //FOR TESTING ONLY
-
     }
 
     @Override
     public void show(){
         stage.clear();
         Gdx.input.setInputProcessor(stage);
+
+
         goldTable = new Table();
         goldTable.setFillParent(true);
         stage.addActor(goldTable);
 
+
         goldAmount = new Label("You have:" + String.valueOf(player.getGold()) +"G", pirateGame.getSkin(),"title");
         goldTable.add(goldAmount);
+
+
         final TextButton textButton = new TextButton("Pay 100G to play?", pirateGame.getSkin());
         textButton.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                bet();
-
+                if(player.getGold()>= 100) {
+                    player.setGold(player.getGold() - 100);
+                    bet();
+                }else{
+                    textButton.setText("You don't have enough gold to play");
+                }
             }
         });
         goldTable.row();
         goldTable.add(textButton);
+
+
         final TextButton quitButton = new TextButton("Quit", pirateGame.getSkin());
         quitButton.addListener(new ChangeListener() {
             @Override
@@ -76,14 +81,13 @@ public class MinigameScreen extends BaseScreen {
         goldTable.row();
         goldTable.add(quitButton);
 
-        //This breaks it for some reason..
-//        goldTable.setY(600);
-//        goldTable.setX(600);
 
         for (int y = 0; y<5; y=y+1){
             Gdx.app.log(miniGame.Geese.get(y).toString(), "words");
         }
     }
+
+
     public void bet(){
         stage.clear();
          Table betTable = new Table();
@@ -182,15 +186,12 @@ public class MinigameScreen extends BaseScreen {
                     Gdx.app.log(String.valueOf(player.getGold()), "post win gold");
                 }
                 pirateGame.setScreen(new MinigameScreen(pirateGame));
-
             }
-
-
         }
     }
     @Override
     public void dispose(){
-
+        stage.dispose();
     }
 
     @Override
