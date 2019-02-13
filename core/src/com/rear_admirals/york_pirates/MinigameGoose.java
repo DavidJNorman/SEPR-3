@@ -19,7 +19,7 @@ public class MinigameGoose {
         this.yPos = yPos;
         gooseTexture = new Texture(Gdx.files.internal("PH_GooseMini.png"));
         gooseImage = new Image(gooseTexture);
-        gooseImage.setBounds(xPos, yPos, 150, 150);
+        gooseImage.setBounds(xPos, yPos, 320, 180);
     }
 
     public String toString() {

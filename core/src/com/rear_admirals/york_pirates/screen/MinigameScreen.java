@@ -2,6 +2,8 @@ package com.rear_admirals.york_pirates.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,7 +24,7 @@ import java.util.Random;
 
 public class MinigameScreen extends BaseScreen {
     private Player player;
-
+    Texture MinigameBack;
     private MiniGame miniGame;
     private Boolean minigamerun = false;
     private Boolean inProgress = false;
@@ -32,6 +34,7 @@ public class MinigameScreen extends BaseScreen {
     private Stage stage;
     private int betOn=6;
     private int lastWon = 6;
+    private SpriteBatch batch;
 
     public MinigameScreen(PirateGame main){
         super(main);
@@ -44,12 +47,11 @@ public class MinigameScreen extends BaseScreen {
     public void show(){
         stage.clear();
         Gdx.input.setInputProcessor(stage);
-
-
+        MinigameBack = new Texture(Gdx.files.internal("MinigameBackground.jpg"));
         goldTable = new Table();
         goldTable.setFillParent(true);
         stage.addActor(goldTable);
-
+        batch = new SpriteBatch();
 
         goldAmount = new Label("You have:" + String.valueOf(player.getGold()) +"G", pirateGame.getSkin(),"title");
         goldTable.add(goldAmount);
@@ -148,10 +150,14 @@ public class MinigameScreen extends BaseScreen {
     public void render(float delta){
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         if(minigamerun && !inProgress){
             minigameSetup();
         }
         if(minigamerun && inProgress){
+            batch.begin();
+            batch.draw(MinigameBack,0,0);
+            batch.end();
             minigame();
         }
 
