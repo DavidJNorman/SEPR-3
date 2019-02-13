@@ -71,23 +71,54 @@ public class CombatScreen extends BaseScreen {
     public CombatScreen(final PirateGame pirateGame, Ship enemy){
         // Calls superclass BaseScreen
         super(pirateGame);
-
         // This constructor also replaces the create function that a stage would typically have.
         this.pirateGame = pirateGame;
         this.player = pirateGame.getPlayer();
         this.enemy = enemy;
 
-        // Load the skin for this screen
-        pirateGame.setSkin(new Skin(Gdx.files.internal("flat-earth-ui.json")));
-
         combatStack = new Stack();
-
         button_pad_bottom = viewheight/24f;
         button_pad_right = viewwidth/32f;
 
-        setTextures();
-        createTable();
+        //[ASSESSMENT 3 CHANGE] I didn't do much here, I simply made their code more modular to make testing easier, just comment out the four method below.
+        setTextures();//TODO: Uncomment, Commented out for testing purposes.
+        createTable();//TODO: Uncomment, Commented out for testing purposes.
+        loadBattleHUD();//TODO: Uncomment, Commented out for testing purposes.
+        SetupEnemyAttacks();//TODO: Uncomment, Commented out for testing purposes.
+    }
 
+
+
+
+    public void setTextures() { //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
+        // Load the skin for this screen
+        pirateGame.setSkin(new Skin(Gdx.files.internal("flat-earth-ui.json")));
+
+        // Insantiate the image textures for use within the scene as backgrounds.
+        bg_texture = new Texture("water_texture_sky.png");
+        background = new Image(bg_texture);
+        background.setSize(viewwidth, viewheight);
+
+        wood_texture = new Texture("wood_vertical_board_texture.png");
+        background_wood = new Image(wood_texture);
+        background_wood.setSize(viewwidth, viewheight);
+    }
+
+    public void createTable(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
+        // Create a Container which takes up the whole screen (used for layout purposes)
+        tableContainer = new Container<Table>();
+        tableContainer.setFillParent(true);
+        tableContainer.setPosition(0,0);
+        tableContainer.align(Align.bottom);
+
+        // Instantiate some different tables used throughout scene
+        rootTable = new Table();
+        descriptionTable = new Table();
+        attackTable = new Table();
+
+    }
+
+    public void loadBattleHUD(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth/3);
         CombatShip enemyShip = new CombatShip("ship2.png",viewwidth/3);                                 //TODO Alter this code to be whatever ship texture we use
@@ -195,40 +226,10 @@ public class CombatScreen extends BaseScreen {
 
         uiStage.addActor(background);
         uiStage.addActor(tableContainer);
-
-        SetupEnemyAttacks();
-    }
-
-    public void createTable(){
-        // Create a Container which takes up the whole screen (used for layout purposes)
-        tableContainer = new Container<Table>();
-        tableContainer.setFillParent(true);
-        tableContainer.setPosition(0,0);
-        tableContainer.align(Align.bottom);
-
-        // Instantiate some different tables used throughout scene
-        rootTable = new Table();
-        descriptionTable = new Table();
-        attackTable = new Table();
-
     }
 
 
-
-    public void setTextures() {
-        // Insantiate the image textures for use within the scene as backgrounds.
-        bg_texture = new Texture("water_texture_sky.png");
-        background = new Image(bg_texture);
-        background.setSize(viewwidth, viewheight);
-
-        wood_texture = new Texture("wood_vertical_board_texture.png");
-        background_wood = new Image(wood_texture);
-        background_wood.setSize(viewwidth, viewheight);
-    }
-
-
-
-    public void SetupEnemyAttacks(){
+    public void SetupEnemyAttacks(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
         // Setup Enemy attacks - may need to be modified if you want to draw attacks from enemy's class
         enemyAttacks = new ArrayList<Attack>();
         enemyAttacks.add(Attack.attackMain);
@@ -240,6 +241,11 @@ public class CombatScreen extends BaseScreen {
         System.out.println(viewwidth + "," + viewheight + " AND " + Gdx.graphics.getWidth() + "," + Gdx.graphics.getHeight());
     }
 
+    public void CheckWin(){ //[ASSESSMENT 3 CHANGE] Made to check win (after boss is defeated)
+        if(this.player.getPlayerShip().getCollege().getAlly().size() >= 5){
+            pirateGame.setScreen(pirateGame.getWinScreen());
+        }
+    }
 
     @Override
     public void update(float delta){ }
@@ -408,11 +414,7 @@ public class CombatScreen extends BaseScreen {
         }
     }
 
-    public void CheckWin(){
-        if(this.player.getPlayerShip().getCollege().getAlly().size() >= 5){
-            pirateGame.setScreen(pirateGame.getWinScreen());
-        }
-    }
+
 
     // Button Listener Classes - creates a hover listener for any button passed through
 
