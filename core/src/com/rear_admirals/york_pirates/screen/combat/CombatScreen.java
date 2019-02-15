@@ -512,13 +512,13 @@ public class CombatScreen extends BaseScreen {
     private void checkBuffTurn(){
         if(player.getAttackBuffTurns() > 0){
             player.setAttackBuffTurns(player.getAttackBuffTurns() - 1);
-            if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed){
+            if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed()){
                 player.removeBuff(constant.ATTACK_BUFF_TAG);
             }
         }
         if(player.getAccuracyBuffTurns() > 0){
             player.setAccuracyBuffTurns(player.getAccuracyBuffTurns() - 1);
-            if(player.getAccuracyBuffTurns() == 0 && player.isAccuracyBuffed){
+            if(player.getAccuracyBuffTurns() == 0 && player.isAccuracyBuffed()){
                 player.removeBuff(constant.ACCURACY_BUFF_TAG);
             }
         }

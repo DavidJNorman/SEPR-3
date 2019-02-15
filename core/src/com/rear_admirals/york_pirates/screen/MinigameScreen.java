@@ -19,7 +19,7 @@ import com.rear_admirals.york_pirates.PirateGame;
 import com.rear_admirals.york_pirates.Player;
 import com.rear_admirals.york_pirates.base.BaseScreen;
 
-import javax.xml.soap.Text;
+//import javax.xml.soap.Text;
 import java.util.Random;
 //[NEW ASSESSMENT 3] All this code was written within assessment 3 for a minigame screen.
 public class MinigameScreen extends BaseScreen {

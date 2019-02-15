@@ -20,9 +20,7 @@ public class Weather {
         this.weatherRegionUpdateNeeded = true;
     }
 
-
-
-
+//handling the effect of normal weather on player(currently no effect, debug code used only)
     private void normal(float delta){
         effectTimer += delta;
         if (effectTimer > 5){
@@ -32,6 +30,7 @@ public class Weather {
         }
     }
 
+    //function handling the storming effect on player
     private void storming(float delta){
         effectTimer += delta;
         if(effectTimer > 1){
@@ -42,11 +41,12 @@ public class Weather {
             effectTimer --;
         }
     }
-
+    //update the weather within the affected region every 10s, selecting 2 different weather by using random number
     public void ifUpdate(float delta){
 
         Random random = new Random();
         if(!weatherUpdateNeeded){
+            //update weather type counter start
             weatherUpdateTimer += delta;
             if(weatherUpdateTimer > 10){
                 weatherUpdateNeeded = true;
@@ -56,7 +56,7 @@ public class Weather {
         }
 
         if(weatherUpdateNeeded){
-            weatherState = 0 + random.nextInt(2);
+            weatherState = random.nextInt(2);
 
             System.out.println(weatherState);
             weatherUpdateNeeded = false;
@@ -69,10 +69,11 @@ public class Weather {
         }
 
     }
-
+    //update the region(from 1 to 7) through random number every 30s
     public void updateWeatherRegion(float delta){
         Random random= new Random();
         if(!weatherRegionUpdateNeeded){
+            //update region counter start
             regionUPdateTimer += delta;
             if(regionUPdateTimer > 30){
                 weatherRegionUpdateNeeded = true;
@@ -87,7 +88,7 @@ public class Weather {
 
 
     }
-
+    //get method for ui display in game
     public int getRegion() {
         return region;
     }

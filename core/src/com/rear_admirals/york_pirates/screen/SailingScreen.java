@@ -297,11 +297,11 @@ public class SailingScreen extends BaseScreen {
                 messageDisplayTimer = 0;
             }
         }
-//        weather.regionUPdateTimerUpdate(delta);
-//        weather.weatherUpdateTimerUpdate(delta);
+    //update region, select one is affected by weather system
         weather.updateWeatherRegion(delta);
         weatherAffectedRegion.setText("weather current affects region"+Integer.toString(weather.getRegion()));
 
+        //if player is in the region that affect by the weather, update the weather every 10s.
         for(BaseActor weatherRegion : weatherRegionList){
             if(playerShip.overlaps(weatherRegion, false)){
                 yourCurrentWeatherRegion.setText("you current in" + weatherRegion.getName());
@@ -400,7 +400,6 @@ public class SailingScreen extends BaseScreen {
                 region.setName(object.getName());
 
                 String cases = object.getName();
-//                System.out.println(cases);
 
                 switch (cases){
                     case "derwentregion":
@@ -457,6 +456,7 @@ public class SailingScreen extends BaseScreen {
         }
     }
 
+    //create weather region information for calculate collision
     private void createWeatherRegionData(){ //[NEW ASSESSMENT 3] This was added for a weather system.
         MapObjects objects = tiledMap.getLayers().get("WeatherRegion").getObjects();
         for (MapObject object : objects){
