@@ -1,6 +1,7 @@
 package com.rear_admirals.york_pirates.screen.combat;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -71,30 +72,63 @@ public class CombatScreen extends BaseScreen {
     public CombatScreen(final PirateGame pirateGame, Ship enemy) {
         // Calls superclass BaseScreen
         super(pirateGame);
-
         // This constructor also replaces the create function that a stage would typically have.
         this.pirateGame = pirateGame;
         this.player = pirateGame.getPlayer();
         this.enemy = enemy;
 
+        combatStack = new Stack();
+        button_pad_bottom = viewheight/24f;
+        button_pad_right = viewwidth/32f;
+
+        //[ASSESSMENT 3 CHANGE] I didn't do much here, I simply made their code more modular to make testing easier, just comment out the four method below.
+        setTextures();//TODO: Uncomment, Commented out for testing purposes.
+        createTable();//TODO: Uncomment, Commented out for testing purposes.
+        loadBattleHUD();//TODO: Uncomment, Commented out for testing purposes.
+        SetupEnemyAttacks();//TODO: Uncomment, Commented out for testing purposes.
+    }
+
+
+
+
+    public void setTextures() { //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
         // Load the skin for this screen
         pirateGame.setSkin(new Skin(Gdx.files.internal("flat-earth-ui.json")));
 
-        combatStack = new Stack();
+        // Insantiate the image textures for use within the scene as backgrounds.
+        bg_texture = new Texture("water_texture_sky.png");
+        background = new Image(bg_texture);
+        background.setSize(viewwidth, viewheight);
 
         button_pad_bottom = viewheight / 24f;
         button_pad_right = viewwidth / 32f;
-
-        setTextures();
-        createTable();
-
-
+        wood_texture = new Texture("wood_vertical_board_texture.png");
+        background_wood = new Image(wood_texture);
+        background_wood.setSize(viewwidth, viewheight);
+      
         //Load seamonster texture for seamonsters, ship2 for college ships
         if (enemy.getCollege().getName() == "Sea") {
             enemytexture = "seamonster.png";
         } else {
             enemytexture = "ship2.png";
         }
+    }
+
+    public void createTable(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
+        // Create a Container which takes up the whole screen (used for layout purposes)
+        tableContainer = new Container<Table>();
+        tableContainer.setFillParent(true);
+        tableContainer.setPosition(0,0);
+        tableContainer.align(Align.bottom);
+
+        // Instantiate some different tables used throughout scene
+        rootTable = new Table();
+        descriptionTable = new Table();
+        attackTable = new Table();
+
+    }
+
+    public void loadBattleHUD(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
         // Instantiate both the ships for the battle
         CombatShip myShip = new CombatShip("ship1.png", viewwidth / 3);
         CombatShip enemyShip = new CombatShip(enemytexture, viewwidth / 3);
@@ -206,59 +240,31 @@ public class CombatScreen extends BaseScreen {
 
         uiStage.addActor(background);
         uiStage.addActor(tableContainer);
-
-        SetupEnemyAttacks();
-    }
-
-    public void createTable(){
-        // Create a Container which takes up the whole screen (used for layout purposes)
-        tableContainer = new Container<Table>();
-        tableContainer.setFillParent(true);
-        tableContainer.setPosition(0,0);
-        tableContainer.align(Align.bottom);
-
-        // Instantiate some different tables used throughout scene
-        rootTable = new Table();
-        descriptionTable = new Table();
-        attackTable = new Table();
-
     }
 
 
-
-    public void setTextures() {
-        // Insantiate the image textures for use within the scene as backgrounds.
-        bg_texture = new Texture("water_texture_sky.png");
-        background = new Image(bg_texture);
-        background.setSize(viewwidth, viewheight);
-
-        wood_texture = new Texture("wood_vertical_board_texture.png");
-        background_wood = new Image(wood_texture);
-        background_wood.setSize(viewwidth, viewheight);
-
+    public void SetupEnemyAttacks(){ //[ASSESSMENT 3 CHANGE] Made slightly more modular for testing purposes.
+      // Setup Enemy attacks - may need to be modified if you want to draw attacks from enemy's class
+      enemyAttacks = new ArrayList<Attack>();
+      if (enemy.getCollege().getName() == "Sea") {
+          enemyAttacks.add(Attack.attackBite);
+          enemyAttacks.add(Attack.attackTail);
+          enemyAttacks.add(Attack.attackSlam);
+      } else{
+          enemyAttacks.add(Attack.attackMain);
+          enemyAttacks.add(GrapeShot.attackGrape);
+          enemyAttacks.add(Attack.attackSwivel);
+      }
+      Gdx.input.setInputProcessor(uiStage);
+      System.out.println(viewwidth + "," + viewheight + " AND " + Gdx.graphics.getWidth() + "," + Gdx.graphics.getHeight());
     }
+  
 
-
-
-    public void SetupEnemyAttacks(){
-        // Setup Enemy attacks - may need to be modified if you want to draw attacks from enemy's class
-        enemyAttacks = new ArrayList<Attack>();
-        if (enemy.getCollege().getName() == "Sea") {
-            enemyAttacks.add(Attack.attackBite);
-            enemyAttacks.add(Attack.attackTail);
-            enemyAttacks.add(Attack.attackSlam);
-        } else{
-            enemyAttacks.add(Attack.attackMain);
-            enemyAttacks.add(GrapeShot.attackGrape);
-            enemyAttacks.add(Attack.attackSwivel);
-
+    public void CheckWin(){ //[ASSESSMENT 3 CHANGE] Made to check win (after boss is defeated)
+        if(this.player.getPlayerShip().getCollege().getAlly().size() >= 5){
+            pirateGame.setScreen(pirateGame.getWinScreen());
         }
-
-        Gdx.input.setInputProcessor(uiStage);
-
-        System.out.println(viewwidth + "," + viewheight + " AND " + Gdx.graphics.getWidth() + "," + Gdx.graphics.getHeight());
     }
-
 
     @Override
     public void update(float delta){ }
@@ -392,12 +398,15 @@ public class CombatScreen extends BaseScreen {
                 textBox.setStyle(pirateGame.getSkin().get("default", TextButton.TextButtonStyle.class));
                 player.addGold(20);
                 player.addPoints(20);
+
                 dialog("Congratulations, you have defeated Enemy " + enemy.getName(), BattleEvent.SCENE_RETURN);
                 if (enemy.getIsBoss() == true) {
                     enemy.getCollege().setBossDead(true);
                     this.player.getPlayerShip().getCollege().addAlly(this.enemy.getCollege());
                     CheckWin();
                 }
+
+
 
                 break;
             case PLAYER_FLEES:
@@ -407,12 +416,14 @@ public class CombatScreen extends BaseScreen {
 
                 break;
             case SCENE_RETURN:
-                enemy.setVisible(false);
+//                enemy.setVisible(false);
                 player.getPlayerShip().setSpeed(0);
                 player.getPlayerShip().setAccelerationXY(0,0);
                 player.getPlayerShip().setAnchor(true);
                 System.out.println("END OF COMBAT");
                 //check buff effect
+
+                //[NEW ASSESSMENT 3] Buffs added with assessment 3
                 checkBuffTurn();
                 System.out.println("player attack buff turns:" + (player.getAttackBuffTurns()));
                 System.out.println("player attack" + player.getPlayerShip().getAttack());
@@ -424,11 +435,7 @@ public class CombatScreen extends BaseScreen {
         }
     }
 
-    public void CheckWin(){
-        if(this.player.getPlayerShip().getCollege().getAlly().size() >= 5){
-            pirateGame.setScreen(pirateGame.getWinScreen());
-        }
-    }
+
 
     // Button Listener Classes - creates a hover listener for any button passed through
 
@@ -520,17 +527,17 @@ public class CombatScreen extends BaseScreen {
             }
         }
     }
-
+    //[NEW ASSESSMENT 3] The buff system was implemented within this assessment.
     private void checkBuffTurn(){
         if(player.getAttackBuffTurns() > 0){
             player.setAttackBuffTurns(player.getAttackBuffTurns() - 1);
-            if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed){
+            if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed()){
                 player.removeBuff(constant.ATTACK_BUFF_TAG);
             }
         }
         if(player.getAccuracyBuffTurns() > 0){
             player.setAccuracyBuffTurns(player.getAccuracyBuffTurns() - 1);
-            if(player.getAccuracyBuffTurns() == 0 && player.isAccuracyBuffed){
+            if(player.getAccuracyBuffTurns() == 0 && player.isAccuracyBuffed()){
                 player.removeBuff(constant.ACCURACY_BUFF_TAG);
             }
         }

@@ -2,10 +2,12 @@ package com.rear_admirals.york_pirates.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.rear_admirals.york_pirates.BuffConstant;
@@ -85,10 +87,10 @@ public class CollegeScreen extends BaseScreen {
         attackBuff.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (player.isAttackBuffed) {
+                if (player.isAttackBuffed()) {
                     attackBuff.setText("Already have this buff");
                 } else {
-                    if(player.payGold(constant.ATTACK_BUFF_PRICE) && !player.isAttackBuffed){
+                    if(player.payGold(constant.ATTACK_BUFF_PRICE) && !player.isAttackBuffed()){
                         System.out.println("charged");
                         player.setAttackBuffTurns(constant.ARRACK_BUFF_TURNS);
                         player.setBuff(constant.ATTACK_BUFF_TAG);
@@ -109,10 +111,10 @@ public class CollegeScreen extends BaseScreen {
         accuracyButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(player.isAccuracyBuffed){
+                if(player.isAccuracyBuffed()){
                     accuracyButton.setText("Already have this buff");
                 }else{
-                    if(player.payGold(constant.ACCURACY_BUFF_PRICE) && !player.isAccuracyBuffed){
+                    if(player.payGold(constant.ACCURACY_BUFF_PRICE) && !player.isAccuracyBuffed()){
                         System.out.println("charged");
                         player.setBuff(constant.ACCURACY_BUFF_TAG);
                         player.setAccuracyBuffTurns(constant.ACCURACY_BUFF_TURN);
@@ -125,6 +127,16 @@ public class CollegeScreen extends BaseScreen {
                 }
             }
         });
+
+        //[NEW ASSESSMENT 3] This code was written within assessment 3 for the Geese racing system
+        final TextButton minigameButton = new TextButton("Geese Racing", main.getSkin());
+        minigameButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                pirateGame.setScreen(new MinigameScreen(pirateGame));
+            }
+        });
+        ////
 
 
 
@@ -139,7 +151,8 @@ public class CollegeScreen extends BaseScreen {
         optionsTable.add(attackBuff);
         optionsTable.row();
         optionsTable.add(accuracyButton);
-
+        optionsTable.row();
+        optionsTable.add(minigameButton);
 
         mainStage.addActor(optionsTable);
         Gdx.input.setInputProcessor(mainStage);

@@ -16,8 +16,8 @@ public class Player {
     public static List<Attack> attacks = new ArrayList<Attack>();
     private int attackBuffTurns;
     private int accuracyBuffTurns;
-    public boolean isAttackBuffed;
-    public boolean isAccuracyBuffed;
+    private boolean isAttackBuffed;
+    private boolean isAccuracyBuffed;
     private BuffConstant constant = new BuffConstant();
 
     public Player() {
@@ -108,5 +108,13 @@ public class Player {
                 break;
         }
 
+    }
+
+    public boolean isAttackBuffed() {
+        return isAttackBuffed;
+    }
+
+    public boolean isAccuracyBuffed() {
+        return isAccuracyBuffed;
     }
 }

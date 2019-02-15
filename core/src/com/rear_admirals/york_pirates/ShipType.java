@@ -16,33 +16,45 @@ public class ShipType {
 		this.attack = attack;
 		this.defence = defence;
 		this.accuracy = accuracy;
-		this.texture = new Texture("ship4.png"); //TESTING (without assets created)
+		this.texture = new Texture("ship4.png"); //TODO: Uncomment, Commented out for testing purposes.
 	} // There is currently no way to give ships a custom texture. Do we need this?
 
 	public String getName() { return name; }
 
-	public String getSubType() { return SubType; }
+	int getAttack() { return attack; }
 
-	public int getAttack() { return attack; }
+	int getDefence() { return defence; }
 
-	public int getDefence() { return defence; }
+	int getAccuracy() { return accuracy; }
 
-	public int getAccuracy() { return accuracy; }
+	//public Texture getTexture() { return texture; } //[NEW Assessment 3] Commented out as it is never used
 
-	public Texture getTexture() { return texture; }
+
 
 	// Static Ship Types go here
 //	public static ShipType Sloop = new ShipType("Sloop", 4, 4, 7, 80);
 	public static ShipType Brig = new ShipType("Brig", "Brig" ,5, 5, 5);
 //	public static ShipType Galleon = new ShipType("Galleon", 6, 6, 3, 120);
 
+
+//ASSESSMENT 3 CONTENT:
+	//[NEW Assessment 3] These are the 5 colleges and the Lake Monster which are static, used only for passing into battle correctly,
+		//the SubType is used to declare what type of enemy, in this case Boss or monster, we face
+		//The stats are passed in through the ShipType constructor, these have changeable statistics, health relying on defence * 20
 	public static ShipType DerwentCollege = new ShipType("Derwent", "Boss", 99, 12, 5);
+	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 1, 5);
+	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 2, 5);
+	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 3, 5);
+	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 4, 5);
+  public static ShipType SeaMonster = new ShipType("Monster", "Monster",6,10,5);
+	//
+
+	//[NEW Assessment 3] This getter was added so we could have a switching function within combat screen and use name to switch, we have SubType for the text that appears when you enter battle.
+	public String getSubType() { return SubType; }
 
 
-	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 10, 5);
-	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 12, 5);
-	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 15, 5);
-	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 20, 5);
-	public static ShipType SeaMonster = new ShipType("Monster", "Monster",6,10,5);
+	//[NEW Assessment 3] This is a newly added method for the sole purpose of testing.
+	public static ShipType getCollege(){ return VanbrughCollege; }
+
 
 }

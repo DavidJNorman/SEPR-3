@@ -3,12 +3,14 @@ package com.rear_admirals.york_pirates.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.rear_admirals.york_pirates.College;
 import com.rear_admirals.york_pirates.Department;
+import com.rear_admirals.york_pirates.Ship;
 
 public class BaseActor extends Group {
 
@@ -16,6 +18,9 @@ public class BaseActor extends Group {
 	private Polygon boundingPolygon;
 	private College college;
     private Department department;
+    private Ship ship;
+
+    private MapObject object;
 
 	public BaseActor() {
 		super();
@@ -23,6 +28,8 @@ public class BaseActor extends Group {
 		boundingPolygon = null;
 		college = null;
 		department = null;
+		ship = null;
+		object = null;
 	}
 
 	public void act(float dt) {
@@ -108,9 +115,21 @@ public class BaseActor extends Group {
         this.college = college;
     }
 
+    public void setShip(Ship ship){this.ship = ship; }
+
+    public Ship getShip(){ return ship; }
+
 	public void setOriginCentre() {
 		if (getWidth() == 0) System.err.println("error: actor size not set");
 		setOrigin(getWidth()/2,getHeight()/2);
+	}
+
+	public void setObject(MapObject object){
+		this.object = object;
+	}
+
+	public MapObject getObject() {
+		return object;
 	}
 }
 

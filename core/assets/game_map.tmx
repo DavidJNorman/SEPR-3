@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="913">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="160" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="15" nextobjectid="926">
  <tileset firstgid="1" source="rpg-tiles-64.tsx"/>
  <tileset firstgid="261" source="map-tiles-64.tsx"/>
  <layer id="8" name="Water" width="160" height="80">
@@ -22,10 +22,10 @@
    eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4G/IAAAB
   </data>
  </layer>
- <objectgroup id="5" name="ObjectData">
+ <objectgroup id="5" name="ObjectData" visible="0">
   <object id="1" name="player" x="2598.67" y="2113.33" width="25.3333" height="62.6667"/>
  </objectgroup>
- <objectgroup id="6" name="PhysicsData">
+ <objectgroup id="6" name="PhysicsData" visible="0">
   <object id="8" name="chemistry" x="1348" y="1920" width="92" height="64"/>
   <object id="9" name="chemistry" x="1444" y="1928" width="10.6667" height="157.333"/>
   <object id="10" name="chemistry" x="1220" y="2081.33" width="206.667" height="26.6667"/>
@@ -764,47 +764,47 @@
   <object id="796" name="goodricke" x="6912" y="1984" width="64" height="382.917"/>
   <object id="797" name="goodricke" x="6976" y="2304" width="383.515" height="63.9091"/>
   <object id="798" name="goodricke" x="7040" y="1408" width="383.515" height="63.9091"/>
-  <object id="799" name="compsci" x="5888" y="4096" width="64" height="192"/>
-  <object id="800" name="compsci" x="5824" y="3968" width="64" height="192"/>
-  <object id="801" name="compsci" x="5888" y="3840" width="64" height="192"/>
-  <object id="802" name="compsci" x="6080" y="3520.33" width="64" height="255.667"/>
-  <object id="804" name="compsci" x="6016" y="3904" width="128" height="64"/>
-  <object id="805" name="compsci" x="5952" y="3840" width="128" height="64"/>
-  <object id="806" name="compsci" x="6080" y="3968" width="128" height="64"/>
-  <object id="807" name="compsci" x="6144" y="4032" width="192.25" height="64"/>
-  <object id="808" name="compsci" x="6272" y="3968" width="192.25" height="64"/>
-  <object id="809" name="compsci" x="6400" y="3904" width="128" height="64"/>
-  <object id="810" name="compsci" x="6464" y="3712" width="64" height="192"/>
-  <object id="811" name="compsci" x="6208" y="3776" width="192.25" height="64"/>
-  <object id="812" name="compsci" x="6144" y="3712" width="64" height="128"/>
-  <object id="813" name="compsci" x="6400" y="3712" width="64" height="128"/>
-  <object id="814" name="compsci" x="6400" y="3456" width="64" height="192"/>
-  <object id="815" name="compsci" x="6272" y="3584" width="128" height="64"/>
-  <object id="816" name="compsci" x="6144" y="3520" width="192.25" height="64"/>
-  <object id="817" name="compsci" x="5696" y="3520" width="192.25" height="64"/>
-  <object id="818" name="compsci" x="5760" y="3200" width="192.25" height="64"/>
-  <object id="819" name="compsci" x="5888" y="3136" width="192.25" height="64"/>
-  <object id="820" name="compsci" x="6592" y="3200" width="64" height="128"/>
-  <object id="821" name="compsci" x="6528" y="3136" width="64" height="128"/>
-  <object id="822" name="compsci" x="6464" y="3072" width="64" height="128"/>
-  <object id="823" name="compsci" x="6784" y="3392" width="64" height="128"/>
-  <object id="824" name="compsci" x="6720" y="4032" width="64" height="128"/>
-  <object id="825" name="compsci" x="6656" y="4096" width="64" height="128"/>
-  <object id="826" name="compsci" x="6592" y="4160" width="64" height="128"/>
-  <object id="827" name="compsci" x="6784" y="3904" width="64" height="192"/>
-  <object id="829" name="compsci" x="5696" y="3328" width="64" height="192"/>
-  <object id="830" name="compsci" x="5696" y="3264" width="128" height="64"/>
-  <object id="831" name="compsci" x="5824" y="3456" width="192.25" height="64"/>
-  <object id="832" name="compsci" x="5952" y="3392" width="383.75" height="64"/>
-  <object id="833" name="compsci" x="6336" y="3392" width="64" height="128"/>
-  <object id="834" name="compsci" x="6080" y="3072" width="64" height="128"/>
-  <object id="835" name="compsci" x="6144" y="3072" width="320" height="64"/>
-  <object id="836" name="compsci" x="6016.25" y="4288" width="511.75" height="64"/>
-  <object id="837" name="compsci" x="5952" y="4224" width="128" height="64"/>
-  <object id="838" name="compsci" x="6464" y="4224" width="128" height="64"/>
-  <object id="839" name="compsci" x="6848" y="3456" width="64" height="512"/>
-  <object id="840" name="compsci" x="6720" y="3328" width="64" height="128"/>
-  <object id="841" name="compsci" x="6656" y="3264" width="128" height="64"/>
+  <object id="799" name="ComputerScience" x="5888" y="4096" width="64" height="192"/>
+  <object id="800" name="ComputerScience" x="5824" y="3968" width="64" height="192"/>
+  <object id="801" name="ComputerScience" x="5888" y="3840" width="64" height="192"/>
+  <object id="802" name="ComputerScience" x="6080" y="3520.33" width="64" height="255.667"/>
+  <object id="804" name="ComputerScience" x="6016" y="3904" width="128" height="64"/>
+  <object id="805" name="ComputerScience" x="5952" y="3840" width="128" height="64"/>
+  <object id="806" name="ComputerScience" x="6080" y="3968" width="128" height="64"/>
+  <object id="807" name="ComputerScience" x="6144" y="4032" width="192.25" height="64"/>
+  <object id="808" name="ComputerScience" x="6272" y="3968" width="192.25" height="64"/>
+  <object id="809" name="ComputerScience" x="6400" y="3904" width="128" height="64"/>
+  <object id="810" name="ComputerScience" x="6464" y="3712" width="64" height="192"/>
+  <object id="811" name="ComputerScience" x="6208" y="3776" width="192.25" height="64"/>
+  <object id="812" name="ComputerScience" x="6144" y="3712" width="64" height="128"/>
+  <object id="813" name="ComputerScience" x="6400" y="3712" width="64" height="128"/>
+  <object id="814" name="ComputerScience" x="6400" y="3456" width="64" height="192"/>
+  <object id="815" name="ComputerScience" x="6272" y="3584" width="128" height="64"/>
+  <object id="816" name="ComputerScience" x="6144" y="3520" width="192.25" height="64"/>
+  <object id="817" name="ComputerScience" x="5696" y="3520" width="192.25" height="64"/>
+  <object id="818" name="ComputerScience" x="5760" y="3200" width="192.25" height="64"/>
+  <object id="819" name="ComputerScience" x="5888" y="3136" width="192.25" height="64"/>
+  <object id="820" name="ComputerScience" x="6592" y="3200" width="64" height="128"/>
+  <object id="821" name="ComputerScience" x="6528" y="3136" width="64" height="128"/>
+  <object id="822" name="ComputerScience" x="6464" y="3072" width="64" height="128"/>
+  <object id="823" name="ComputerScience" x="6784" y="3392" width="64" height="128"/>
+  <object id="824" name="ComputerScience" x="6720" y="4032" width="64" height="128"/>
+  <object id="825" name="ComputerScience" x="6656" y="4096" width="64" height="128"/>
+  <object id="826" name="ComputerScience" x="6592" y="4160" width="64" height="128"/>
+  <object id="827" name="ComputerScience" x="6784" y="3904" width="64" height="192"/>
+  <object id="829" name="ComputerScience" x="5696" y="3328" width="64" height="192"/>
+  <object id="830" name="ComputerScience" x="5696" y="3264" width="128" height="64"/>
+  <object id="831" name="ComputerScience" x="5824" y="3456" width="192.25" height="64"/>
+  <object id="832" name="ComputerScience" x="5952" y="3392" width="383.75" height="64"/>
+  <object id="833" name="ComputerScience" x="6336" y="3392" width="64" height="128"/>
+  <object id="834" name="ComputerScience" x="6080" y="3072" width="64" height="128"/>
+  <object id="835" name="ComputerScience" x="6144" y="3072" width="320" height="64"/>
+  <object id="836" name="ComputerScience" x="6016.25" y="4288" width="511.75" height="64"/>
+  <object id="837" name="ComputerScience" x="5952" y="4224" width="128" height="64"/>
+  <object id="838" name="ComputerScience" x="6464" y="4224" width="128" height="64"/>
+  <object id="839" name="ComputerScience" x="6848" y="3456" width="64" height="512"/>
+  <object id="840" name="ComputerScience" x="6720" y="3328" width="64" height="128"/>
+  <object id="841" name="ComputerScience" x="6656" y="3264" width="128" height="64"/>
   <object id="844" name="langwith" x="8128" y="2176" width="64" height="512"/>
   <object id="846" name="langwith" x="8384" y="2176" width="64" height="448.045"/>
   <object id="847" name="langwith" x="8640" y="1344" width="64" height="512"/>
@@ -879,5 +879,14 @@
   <object id="843" name="goodrickeregion" x="5184" y="0" width="2560" height="2816"/>
   <object id="912" name="langwithregion" x="7744" y="704" width="2496" height="3136"/>
  </objectgroup>
- <objectgroup id="12" name="Boundary"/>
+ <objectgroup id="12" name="Boundary" visible="0"/>
+ <objectgroup id="14" name="WeatherRegion">
+  <object id="917" name="region1" x="0" y="0" width="2832" height="2640"/>
+  <object id="918" name="region2" x="2816" y="0" width="2688" height="2624"/>
+  <object id="919" name="region3" x="5504" y="0" width="2560" height="2624"/>
+  <object id="920" name="region7" x="8064" y="0" width="2176" height="5120"/>
+  <object id="923" name="region4" x="0" y="2624" width="2816" height="2496"/>
+  <object id="924" name="region5" x="2816" y="2624" width="2688" height="2496"/>
+  <object id="925" name="region6" x="5504" y="2624" width="2560" height="2496"/>
+ </objectgroup>
 </map>
