@@ -38,20 +38,23 @@ public class ShipType {
 
 
 //ASSESSMENT 3 CONTENT:
-	//[NEW Assessment 3] These 5 colleges are static, used only for passing into battle correctly,
-		//the SubType is used to declare what type of enemy, in this case Boss, we face
+	//[NEW Assessment 3] These are the 5 colleges and the Lake Monster which are static, used only for passing into battle correctly,
+		//the SubType is used to declare what type of enemy, in this case Boss or monster, we face
 		//The stats are passed in through the ShipType constructor, these have changeable statistics, health relying on defence * 20
 	public static ShipType DerwentCollege = new ShipType("Derwent", "Boss", 99, 12, 5);
 	public static ShipType VanbrughCollege = new ShipType("Vanbrugh", "Boss", 8, 1, 5);
 	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 2, 5);
 	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 10, 3, 5);
 	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 12, 4, 5);
+  public static ShipType SeaMonster = new ShipType("Monster", "Monster",6,10,5);
 	//
 
 	//[NEW Assessment 3] This getter was added so we could have a switching function within combat screen and use name to switch, we have SubType for the text that appears when you enter battle.
 	public String getSubType() { return SubType; }
 
+
 	//[NEW Assessment 3] This is a newly added method for the sole purpose of testing.
 	public static ShipType getCollege(){ return VanbrughCollege; }
+
 
 }

@@ -34,4 +34,5 @@ public class College {
     //[NEW ASSESSMENT 3] Two new colleges added
     public static College Goodricke = new College("Goodricke");
     public static College Langwith = new College("Langwith");
+    public static College Sea = new College ("Sea");
 }

@@ -82,4 +82,9 @@ public class Attack {
 	public static Attack attackMain = new Attack("Broadside","Normal cannons. Fire a broadside at your enemy.",3,2,false,60);
 	public static Attack attackSwivel = new Attack("Swivel","Lightweight cannons. High accuracy, low damage attack.",2,3,false,75);
 	public static Attack attackBoard = new Attack("Board","Board enemy ship. Charges attack over a turn, medium - high damage and very high accuracy", 4,2,true,90);
+	//sea monster attacks
+	public static Attack attackBite = new Attack("Bite","Bite player ship",4,2,false,90);
+	public static Attack attackTail = new Attack("Tail Whip","Attack player ship with tail",4,2,false,90);
+	public static Attack attackSlam = new Attack("Slam","Slam player ship",4,2,false,90);
+
 }

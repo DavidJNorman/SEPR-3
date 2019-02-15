@@ -192,11 +192,22 @@ public class SailingScreen extends BaseScreen {
                     }
                 }
             }
+
         }
 
         if (!x) {
             mapMessage.setText("Neutral Territory");
+            //Spawn sea monsters while in neutral territory
+            //rarer than enemy ships in college regions
+            int monsterChance = ThreadLocalRandom.current().nextInt(0, 20000);
+            if (monsterChance <= 10) {
+                System.out.println("Sea Monster attack!");
+                pirateGame.setScreen(new CombatScreen(pirateGame, new Ship(SeaMonster, Sea)));
+            }
         }
+
+
+
 
 
         Boolean y = false;
