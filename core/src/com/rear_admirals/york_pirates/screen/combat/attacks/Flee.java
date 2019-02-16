@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Flee extends Attack {
 
-    protected Flee() {
+    public Flee() {
         this.name = "FLEE";
         this.desc = "Attempt to escape enemy.";
     }

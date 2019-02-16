@@ -15,7 +15,7 @@ public class Attack {
 	protected int accPercent;
 
 	// Generic constructor. Creates simple broadside attack.
-	protected Attack() {
+	public Attack() {
 		this.name = "Broadside";
 		this.desc = "Fire a broadside at your enemy.";
 		this.dmgMultiplier = 3;
@@ -68,6 +68,7 @@ public class Attack {
 
 	public String getName() { return this.name;	}
 	public String getDesc() { return this.desc; }
+	public void setAccPercent(int Percentage) {this.accPercent = Percentage;} //[New Assessment 3] Added for testing
 	public boolean isSkipMove() {
 		return this.skipMove;
 	}

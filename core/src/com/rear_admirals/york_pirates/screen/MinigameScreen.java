@@ -32,15 +32,15 @@ public class MinigameScreen extends BaseScreen {
     private Label goldAmount;
     private Label goldString;
     private Stage stage;
-    private int betOn=6;
-    private int lastWon = 6;
+    public int betOn=1;
+    public int lastWon = 3;
     private SpriteBatch batch;
 
     public MinigameScreen(PirateGame main){
         super(main);
         miniGame = new MiniGame();
         this.player = main.getPlayer();
-        stage = new Stage(new ScreenViewport());
+        //stage = new Stage(new ScreenViewport());
     }
 
     @Override
@@ -195,6 +195,29 @@ public class MinigameScreen extends BaseScreen {
             }
         }
     }
+
+    public void minigameTesting(){
+        while(true){
+            for (int x = 0; x<5; x=x+1){
+                //System.out.println("A");
+                miniGame.Geese.get(x).xPos += miniGame.Geese.get(x).speed;
+                // System.out.println("B");
+                if(miniGame.Geese.get(x).xPos>20){
+                    //System.out.println("c");
+                    minigamerun = false;
+                    lastWon = miniGame.Geese.get(x).id;
+                    if (lastWon==betOn){
+                        player.setGold(player.getGold()+200);
+                    }
+                    return;
+                    //pirateGame.setScreen(new MinigameScreen(pirateGame));
+                }
+            }
+        }
+
+    }
+
+
     @Override
     public void dispose(){
         stage.dispose();
@@ -204,4 +227,6 @@ public class MinigameScreen extends BaseScreen {
     public void resize(int width, int height){
         stage.getViewport().update(width, height, true);
     }
+
+    public MiniGame getMiniGame(){ return this.miniGame;}
 }

@@ -337,7 +337,7 @@ public class SailingScreen extends BaseScreen {
     }
 
     public ShipType CollegeChecker(String name){ //[NEW ASSESSMENT 3] This simple switch function is used to return the correct college ShipType based on name passed in.
-        switch (name){
+        switch (name){ //TODO: Can be tested
             case "derwent":
                Gdx.app.log("College Name", DerwentCollege.getName());
                 return DerwentCollege;

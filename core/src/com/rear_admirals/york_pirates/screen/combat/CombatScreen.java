@@ -82,10 +82,10 @@ public class CombatScreen extends BaseScreen {
         button_pad_right = viewwidth/32f;
 
         //[ASSESSMENT 3 CHANGE] I didn't do much here, I simply made their code more modular to make testing easier, just comment out the four method below.
-        setTextures();//TODO: Uncomment, Commented out for testing purposes.
-        createTable();//TODO: Uncomment, Commented out for testing purposes.
-        loadBattleHUD();//TODO: Uncomment, Commented out for testing purposes.
-        SetupEnemyAttacks();//TODO: Uncomment, Commented out for testing purposes.
+       // setTextures();//TODO: Uncomment, Commented out for testing purposes.
+        //createTable();//TODO: Uncomment, Commented out for testing purposes.
+        //loadBattleHUD();//TODO: Uncomment, Commented out for testing purposes.
+        //SetupEnemyAttacks();//TODO: Uncomment, Commented out for testing purposes.
     }
 
 
@@ -529,7 +529,7 @@ public class CombatScreen extends BaseScreen {
         }
     }
     //[NEW ASSESSMENT 3] The buff system was implemented within this assessment.
-    private void checkBuffTurn(){
+    private void checkBuffTurn(){ //TODO: Can be tested
         if(player.getAttackBuffTurns() > 0){
             player.setAttackBuffTurns(player.getAttackBuffTurns() - 1);
             if(player.getAttackBuffTurns() == 0 && player.isAttackBuffed()){

@@ -24,9 +24,9 @@ public class Player {
 	    this.playerShip = new Ship(Brig, "Your Ship", Derwent);
         this.gold = 100;
         this.points = 0;
-        attacks.add(Ram.attackRam);
-        attacks.add(GrapeShot.attackSwivel);
-        attacks.add(Attack.attackBoard);
+        ///attacks.add(Ram.attackRam);
+        ///attacks.add(GrapeShot.attackSwivel);
+        ///attacks.add(Attack.attackBoard);
     }
 
     public Player(Ship ship) {
@@ -41,9 +41,9 @@ public class Player {
 
     public Ship getPlayerShip() { return this.playerShip; }
 
-    public int getPoints() { return points; }
+    public int getPoints() { return this.points; }
 
-	public int getGold() { return gold; }
+	public int getGold() { return this.gold; }
 
     public void setPoints(int points) {
         this.points = points;

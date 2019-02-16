@@ -17,9 +17,10 @@ public class MinigameGoose {
         this.speed = speed;
         this.xPos = xPos;
         this.yPos = yPos;
-        gooseTexture = new Texture(Gdx.files.internal("PH_GooseMini.png"));
-        gooseImage = new Image(gooseTexture);
-        gooseImage.setBounds(xPos, yPos, 320, 180);
+        //gooseTexture = new Texture(Gdx.files.internal("PH_GooseMini.png"));
+        //gooseImage = new Image(gooseTexture);
+        //gooseImage.setBounds(xPos, yPos, 320, 180);
+        this.xPos = 0;
     }
 
     public String toString() {
@@ -29,4 +30,6 @@ public class MinigameGoose {
     public Image getImage() {
         return this.gooseImage;
     }
+
+    public int getxPos() {return this.xPos;}
 }

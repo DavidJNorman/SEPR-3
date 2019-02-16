@@ -71,6 +71,8 @@ public class PirateGame extends Game {
 
 	public Player getPlayer() { return this.player; }
 
+	public void setPlayer(Player myPlayer) { this.player = myPlayer; }
+
 	public SailingScreen getSailingScene() { return this.sailingScene; }
 
 	public WinScreen getWinScreen() {return this.winScreen;} //[NEW ASSESSMENT 3] Win screen is new to this class

@@ -31,7 +31,7 @@ public class Weather {
     }
 
     //function handling the storming effect on player
-    private void storming(float delta){
+    public void storming(float delta){
         effectTimer += delta;
         if(effectTimer > 1){
             main.getPlayer().getPlayerShip().damage(1);
@@ -99,6 +99,9 @@ public class Weather {
         }else if(weatherState == 1){
             return STORMING;
         }else return "unknown weather";
+    }
 
+    public int getWeatherState(){
+        return weatherState;
     }
 }

@@ -16,7 +16,7 @@ public class ShipType {
 		this.attack = attack;
 		this.defence = defence;
 		this.accuracy = accuracy;
-		this.texture = new Texture("ship4.png"); //TODO: Uncomment, Commented out for testing purposes.
+		//this.texture = new Texture("ship4.png"); //TODO: Uncomment, Commented out for testing purposes.
 	} // There is currently no way to give ships a custom texture. Do we need this?
 
 	public String getName() { return name; }
@@ -46,7 +46,7 @@ public class ShipType {
 	public static ShipType JamesCollege = new ShipType("James", "Boss", 6, 12, 5);
 	public static ShipType LangwithCollege = new ShipType("Langwith", "Boss", 7, 18, 5);
 	public static ShipType GoodrickeCollege = new ShipType("Goodricke", "Boss", 6, 15, 5);
-  public static ShipType SeaMonster = new ShipType("Monster", "Monster",6,10,5);
+	public static ShipType SeaMonster = new ShipType("Monster", "Monster",6,10,5);
 	//
 
 	//[NEW Assessment 3] This getter was added so we could have a switching function within combat screen and use name to switch, we have SubType for the text that appears when you enter battle.
@@ -54,7 +54,9 @@ public class ShipType {
 
 
 	//[NEW Assessment 3] This is a newly added method for the sole purpose of testing.
-	public static ShipType getCollege(){ return VanbrughCollege; }
+	public static ShipType getDefaultCollege(){ return Brig; }
 
-
+	//[NEW Assessment 3] This is a newly added method for the sole purpose of testing.
+	public static ShipType getEnemy(){ return SeaMonster; }
+	public static ShipType getEnemyShip(){ return VanbrughCollege; }
 }
